@@ -1,3 +1,427 @@
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Mojo build
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.mojo/
+.mojoproject/
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env.local
+.env.*.local
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies
+node_modules/
+venv/
+env/
+.venv/
+.env
+
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.hypothesis/
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Runtime
+*.pid
+*.sock
+*.lock
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.postgres
+
+# Cache
+.cache/
+*.cache
+.eslintcache
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# OS specific
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.override.yml
+
+# Kubernetes
+k8s/
+*.yaml
+*.yml
+
+# Monitoring/Observability
+metrics/
+traces/
+profiles/
+*.pprof
+*.prof
+
+# Documentation
+docs/_build/
+docs/.doctrees/
+site/
+
+# Benchmarks
+benchmarks/results/
+*.bench
+
+# Secrets and credentials
+.env
+.env.*.local
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+
+# Generated files
+*.generated.mojo
+*.pb.mojo
+*.pb.go
+
+# IDE specific
+.vscode/settings.json
+.vscode/launch.json
+.idea/workspace.xml
+.idea/tasks.xml
+
+# CI/CD
+.github/workflows/
+.gitlab-ci.yml
+.circleci/
+
+# Package managers
+package-lock.json
+yarn.lock
+Cargo.lock
+Gemfile.lock
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+
+# Redis
+dump.rdb
+*.rdb
+
+# Profiling
+*.prof
+*.pprof
+profile.txt
+
+# Crash dumps
+*.core
+core.*
+
+# Temporary build files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Node modules (if using any JS tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Rust (if using any Rust dependencies)
+target/
+Cargo.lock
+
+# Go (if using any Go dependencies)
+bin/
+obj/
+
+# Java (if using any Java dependencies)
+*.class
+*.jar
+*.war
+*.ear
+
+# C/C++ (if using any C/C++ dependencies)
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+
+# SBT
+target/
+.scala_dependencies
+.sbtserver
+
+# Kotlin
+out/
+.kotlin/
+
+# Swift
+.build/
+.swiftpm/
+
+# Ruby
+Gemfile.lock
+.bundle/
+
+# PHP
+vendor/
+composer.lock
+
+# Perl
+local/
+CPANfile.lock
+
+# Lua
+lua_modules/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# MATLAB
+*.asv
+*.m~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# CloudFormation
+.cfn/
+*.cfn.json
+
+# Ansible
+.ansible/
+*.retry
+
+# Vagrant
+.vagrant/
+*.box
+
+# Packer
+crash.log
+crash.*.log
+
+# Helm
+Chart.lock
+
+# Kustomize
+kustomization.yaml
+
+# ArgoCD
+.argocd/
+
+# Flux
+.flux/
+
+# Prometheus
+prometheus.yml
+
+# Grafana
+grafana/
+
+# ELK Stack
+elasticsearch/
+logstash/
+kibana/
+
+# Jaeger
+jaeger/
+
+# Zipkin
+zipkin/
+
+# OpenTelemetry
+otel/
+
+# Datadog
+datadog/
+
+# New Relic
+newrelic/
+
+# Sentry
+sentry/
+
+# Rollbar
+rollbar/
+
+# Honeycomb
+honeycomb/
+
+# Splunk
+splunk/
+
+# Sumo Logic
+sumologic/
+
+# Dynatrace
+dynatrace/
+
+# AppDynamics
+appdynamics/
+
+# Elastic APM
+elastic-apm/
+
+# AWS
+.aws/
+*.pem
+*.key
+
+# GCP
+.gcp/
+*.json
+
+# Azure
+.azure/
+*.pfx
+
+# DigitalOcean
+.do/
+
+# Linode
+.linode/
+
+# Vultr
+.vultr/
+
+# Hetzner
+.hetzner/
+
+# OVH
+.ovh/
+
+# Scaleway
+.scaleway/
+
+# Packet
+.packet/
+
+# Equinix
+.equinix/
+
+# Fastly
+.fastly/
+
+# Cloudflare
+.cloudflare/
+
+# Akamai
+.akamai/
+
+# CDN
+cdn/
+
+# Load Balancer
+lb/
+
+# API Gateway
+api-gateway/
+
+# Service Mesh
+service-mesh/
+
+# Observability
+observability/
+
+# Security
+security/
+
+# Compliance
+compliance/
+
+# Audit
+audit/
+
+# Backup
+backup/
+*.backup
+*.bak
+
+# Archive
+*.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.7z
+*.rar
+
+# Misc
+.DS_Store
+Thumbs.db
+.directory
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
