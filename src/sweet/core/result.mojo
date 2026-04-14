@@ -1,0 +1,1 @@
+# Result[T, E] monad

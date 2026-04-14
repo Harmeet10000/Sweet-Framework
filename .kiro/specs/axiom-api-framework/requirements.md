@@ -1,12 +1,12 @@
-# Requirements Document: Axiom API Framework
+# Requirements Document: Sweet API Framework
 
 ## Introduction
 
-Axiom is a high-performance API server framework written in Mojo that targets sub-millisecond latency and 1M+ requests per second throughput. The framework combines AOT compilation, thread-per-core architecture, SIMD acceleration, and Railway Oriented Programming to deliver extreme performance while maintaining type safety and excellent developer ergonomics. This document specifies the functional and non-functional requirements for developers building high-performance APIs with Axiom.
+Sweet is a high-performance API server framework written in Mojo that targets sub-millisecond latency and 1M+ requests per second throughput. The framework combines AOT compilation, thread-per-core architecture, SIMD acceleration, and Railway Oriented Programming to deliver extreme performance while maintaining type safety and excellent developer ergonomics. This document specifies the functional and non-functional requirements for developers building high-performance APIs with Sweet.
 
 ## Glossary
 
-- **Axiom**: The high-performance API framework being specified
+- **Sweet**: The high-performance API framework being specified
 - **Handler**: A function that processes HTTP requests and returns responses
 - **Middleware**: A component that intercepts and processes requests/responses in the pipeline
 - **Router**: The component that matches incoming request paths to handlers
@@ -107,17 +107,17 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. THE Axiom SHALL use Result types for all operations that can fail
-2. WHEN a Result is Ok, THE Axiom SHALL contain a valid success value
-3. WHEN a Result is Err, THE Axiom SHALL contain an error with a descriptive message
+1. THE Sweet SHALL use Result types for all operations that can fail
+2. WHEN a Result is Ok, THE Sweet SHALL contain a valid success value
+3. WHEN a Result is Err, THE Sweet SHALL contain an error with a descriptive message
 4. THE Result type SHALL support map operations for transforming success values
 5. THE Result type SHALL support and_then operations for chaining fallible operations
-6. WHEN an error occurs in a handler, THE Axiom SHALL propagate it through the middleware chain
-7. WHEN an error reaches the top level, THE Axiom SHALL convert it to an appropriate HTTP error response
-8. THE Axiom SHALL map ErrorKind.NotFound to HTTP 404
-9. THE Axiom SHALL map ErrorKind.BadRequest to HTTP 400
-10. THE Axiom SHALL map ErrorKind.Unauthorized to HTTP 401
-11. THE Axiom SHALL map ErrorKind.InternalError to HTTP 500
+6. WHEN an error occurs in a handler, THE Sweet SHALL propagate it through the middleware chain
+7. WHEN an error reaches the top level, THE Sweet SHALL convert it to an appropriate HTTP error response
+8. THE Sweet SHALL map ErrorKind.NotFound to HTTP 404
+9. THE Sweet SHALL map ErrorKind.BadRequest to HTTP 400
+10. THE Sweet SHALL map ErrorKind.Unauthorized to HTTP 401
+11. THE Sweet SHALL map ErrorKind.InternalError to HTTP 500
 
 ### Requirement 7: Memory Management
 
@@ -130,7 +130,7 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 3. WHEN request processing completes, THE Arena SHALL reset in O(1) time
 4. THE Arena SHALL prevent buffer overflows by bounds-checking all allocations
 5. WHEN the arena is reset, THE Arena SHALL set its offset to zero
-6. THE Axiom SHALL allocate less than 1KB of memory per typical request
+6. THE Sweet SHALL allocate less than 1KB of memory per typical request
 
 ### Requirement 8: Async I/O Operations
 
@@ -154,13 +154,13 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. WHEN the server starts, THE Axiom SHALL create one worker thread per configured core
+1. WHEN the server starts, THE Sweet SHALL create one worker thread per configured core
 2. WHEN a connection arrives, THE Kernel SHALL distribute it to a worker core via SO_REUSEPORT
 3. WHILE processing a request, THE Worker SHALL use only its own memory and resources
-4. THE Axiom SHALL ensure no cross-core synchronization is required for request processing
-5. WHEN multiple cores are active, THE Axiom SHALL scale linearly with core count
-6. THE Axiom SHALL maintain separate memory arenas per core
-7. THE Axiom SHALL maintain separate connection pools per core
+4. THE Sweet SHALL ensure no cross-core synchronization is required for request processing
+5. WHEN multiple cores are active, THE Sweet SHALL scale linearly with core count
+6. THE Sweet SHALL maintain separate memory arenas per core
+7. THE Sweet SHALL maintain separate connection pools per core
 
 ### Requirement 10: Background Task Processing
 
@@ -235,7 +235,7 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 4. THE Plugin SHALL be able to register routes during registration
 5. THE Plugin SHALL be able to register middleware during registration
 6. THE Plugin SHALL be able to register lifecycle hooks during registration
-7. THE Axiom SHALL provide built-in plugins for CORS, JWT authentication, and rate limiting
+7. THE Sweet SHALL provide built-in plugins for CORS, JWT authentication, and rate limiting
 
 ### Requirement 15: Dependency Injection
 
@@ -246,8 +246,8 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 1. WHEN a dependency is registered as a singleton, THE DI_Container SHALL create it once and reuse it
 2. WHEN a dependency is registered as a factory, THE DI_Container SHALL create a new instance on each resolution
 3. WHEN a handler requests a dependency, THE DI_Container SHALL resolve it at compile time where possible
-4. THE Axiom SHALL support functional dependency injection via Dependencies parameter
-5. THE Axiom SHALL support decorator-based dependency injection via @inject annotation
+4. THE Sweet SHALL support functional dependency injection via Dependencies parameter
+5. THE Sweet SHALL support decorator-based dependency injection via @inject annotation
 6. WHEN a dependency cannot be resolved, THE DI_Container SHALL return a descriptive error
 
 ### Requirement 16: OpenAPI Documentation
@@ -261,7 +261,7 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 3. WHEN generating OpenAPI spec, THE OpenAPI_Generator SHALL include path parameters
 4. WHEN generating OpenAPI spec, THE OpenAPI_Generator SHALL include request body schemas
 5. WHEN generating OpenAPI spec, THE OpenAPI_Generator SHALL include response schemas
-6. THE Axiom SHALL serve the OpenAPI specification at /openapi.json
+6. THE Sweet SHALL serve the OpenAPI specification at /openapi.json
 7. THE OpenAPI_Generator SHALL produce valid OpenAPI 3.0 JSON
 
 ### Requirement 17: Configuration Management
@@ -270,13 +270,13 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. WHEN creating a server configuration, THE Axiom SHALL validate all settings
-2. IF the port is outside the range 1-65535, THEN THE Axiom SHALL return a validation error
-3. IF num_workers is less than 1, THEN THE Axiom SHALL return a validation error
-4. IF TLS is enabled but cert/key paths are missing, THEN THE Axiom SHALL return a validation error
-5. THE Axiom SHALL support configuration of host, port, and num_workers
-6. THE Axiom SHALL support configuration of io_uring_entries, tcp_nodelay, tcp_quickack, so_reuseport, and backlog
-7. THE Axiom SHALL support configuration of TLS certificate and key paths
+1. WHEN creating a server configuration, THE Sweet SHALL validate all settings
+2. IF the port is outside the range 1-65535, THEN THE Sweet SHALL return a validation error
+3. IF num_workers is less than 1, THEN THE Sweet SHALL return a validation error
+4. IF TLS is enabled but cert/key paths are missing, THEN THE Sweet SHALL return a validation error
+5. THE Sweet SHALL support configuration of host, port, and num_workers
+6. THE Sweet SHALL support configuration of io_uring_entries, tcp_nodelay, tcp_quickack, so_reuseport, and backlog
+7. THE Sweet SHALL support configuration of TLS certificate and key paths
 
 ### Requirement 18: Performance Targets
 
@@ -284,13 +284,13 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. THE Axiom SHALL achieve p99 latency under 1 millisecond for simple API operations
-2. THE Axiom SHALL achieve throughput of 60,000-100,000 requests per second per core
-3. THE Axiom SHALL scale linearly with core count up to 16+ cores
-4. THE Axiom SHALL use less than 1KB of memory per typical request
-5. THE Axiom SHALL parse HTTP requests in 10-20 microseconds using SIMD
-6. THE Axiom SHALL match routes in 5-10 microseconds using radix trie
-7. THE Axiom SHALL serialize JSON responses in 20-50 microseconds using SIMD
+1. THE Sweet SHALL achieve p99 latency under 1 millisecond for simple API operations
+2. THE Sweet SHALL achieve throughput of 60,000-100,000 requests per second per core
+3. THE Sweet SHALL scale linearly with core count up to 16+ cores
+4. THE Sweet SHALL use less than 1KB of memory per typical request
+5. THE Sweet SHALL parse HTTP requests in 10-20 microseconds using SIMD
+6. THE Sweet SHALL match routes in 5-10 microseconds using radix trie
+7. THE Sweet SHALL serialize JSON responses in 20-50 microseconds using SIMD
 
 ### Requirement 19: Security
 
@@ -298,16 +298,16 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. WHEN validating input, THE Axiom SHALL enforce maximum header size of 8KB
-2. WHEN validating input, THE Axiom SHALL enforce maximum body size of 10MB (configurable)
-3. WHEN validating input, THE Axiom SHALL enforce maximum path length of 2KB
-4. WHEN validating input, THE Axiom SHALL enforce maximum query string length of 4KB
-5. WHEN validating input, THE Axiom SHALL enforce maximum number of headers of 100
-6. THE Axiom SHALL validate all string inputs are valid UTF-8
-7. THE Axiom SHALL bounds-check all buffer accesses to prevent overflows
-8. WHEN serializing JSON, THE Axiom SHALL escape special characters to prevent injection
-9. THE Axiom SHALL provide middleware hooks for authentication and authorization
-10. THE Axiom SHALL support rate limiting via middleware
+1. WHEN validating input, THE Sweet SHALL enforce maximum header size of 8KB
+2. WHEN validating input, THE Sweet SHALL enforce maximum body size of 10MB (configurable)
+3. WHEN validating input, THE Sweet SHALL enforce maximum path length of 2KB
+4. WHEN validating input, THE Sweet SHALL enforce maximum query string length of 4KB
+5. WHEN validating input, THE Sweet SHALL enforce maximum number of headers of 100
+6. THE Sweet SHALL validate all string inputs are valid UTF-8
+7. THE Sweet SHALL bounds-check all buffer accesses to prevent overflows
+8. WHEN serializing JSON, THE Sweet SHALL escape special characters to prevent injection
+9. THE Sweet SHALL provide middleware hooks for authentication and authorization
+10. THE Sweet SHALL support rate limiting via middleware
 
 ### Requirement 20: Error Recovery
 
@@ -315,15 +315,15 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. WHEN an HTTP parse error occurs, THE Axiom SHALL return HTTP 400 and continue processing
-2. WHEN a route is not found, THE Axiom SHALL return HTTP 404 and continue processing
-3. WHEN validation fails, THE Axiom SHALL return HTTP 422 with field-level errors
-4. WHEN a handler raises an error, THE Axiom SHALL return HTTP 500 and log the error
-5. WHEN an I/O error occurs, THE Axiom SHALL close the connection and clean up resources
-6. WHEN arena exhaustion occurs, THE Axiom SHALL return HTTP 500 and reset the arena
-7. WHEN a background task fails, THE Axiom SHALL retry it with exponential backoff
-8. WHEN a cron job fails, THE Axiom SHALL log the error and continue with the schedule
-9. WHEN any error occurs, THE Axiom SHALL reset the memory arena to prevent leaks
+1. WHEN an HTTP parse error occurs, THE Sweet SHALL return HTTP 400 and continue processing
+2. WHEN a route is not found, THE Sweet SHALL return HTTP 404 and continue processing
+3. WHEN validation fails, THE Sweet SHALL return HTTP 422 with field-level errors
+4. WHEN a handler raises an error, THE Sweet SHALL return HTTP 500 and log the error
+5. WHEN an I/O error occurs, THE Sweet SHALL close the connection and clean up resources
+6. WHEN arena exhaustion occurs, THE Sweet SHALL return HTTP 500 and reset the arena
+7. WHEN a background task fails, THE Sweet SHALL retry it with exponential backoff
+8. WHEN a cron job fails, THE Sweet SHALL log the error and continue with the schedule
+9. WHEN any error occurs, THE Sweet SHALL reset the memory arena to prevent leaks
 
 ### Requirement 21: Testing Support
 
@@ -331,13 +331,13 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. THE Axiom SHALL provide unit testing support for all components
-2. THE Axiom SHALL provide property-based testing for parsers, routers, and serializers
-3. THE Axiom SHALL provide integration testing support for full request-response cycles
-4. THE Axiom SHALL provide benchmarking tools for performance testing
-5. THE Axiom SHALL achieve greater than 90% line coverage in tests
-6. THE Axiom SHALL achieve greater than 85% branch coverage in tests
-7. THE Axiom SHALL test all error paths and recovery scenarios
+1. THE Sweet SHALL provide unit testing support for all components
+2. THE Sweet SHALL provide property-based testing for parsers, routers, and serializers
+3. THE Sweet SHALL provide integration testing support for full request-response cycles
+4. THE Sweet SHALL provide benchmarking tools for performance testing
+5. THE Sweet SHALL achieve greater than 90% line coverage in tests
+6. THE Sweet SHALL achieve greater than 85% branch coverage in tests
+7. THE Sweet SHALL test all error paths and recovery scenarios
 
 ### Requirement 22: Developer Experience
 
@@ -345,13 +345,13 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. WHEN a route is registered with an invalid pattern, THE Axiom SHALL provide a descriptive compile-time error
-2. WHEN validation fails, THE Axiom SHALL provide field-level error messages
-3. WHEN a handler returns an error, THE Axiom SHALL include the error message in logs
-4. THE Axiom SHALL provide clear examples for common use cases
-5. THE Axiom SHALL provide comprehensive API documentation
-6. THE Axiom SHALL use type-safe APIs to prevent runtime errors
-7. THE Axiom SHALL provide helpful compiler errors for misuse
+1. WHEN a route is registered with an invalid pattern, THE Sweet SHALL provide a descriptive compile-time error
+2. WHEN validation fails, THE Sweet SHALL provide field-level error messages
+3. WHEN a handler returns an error, THE Sweet SHALL include the error message in logs
+4. THE Sweet SHALL provide clear examples for common use cases
+5. THE Sweet SHALL provide comprehensive API documentation
+6. THE Sweet SHALL use type-safe APIs to prevent runtime errors
+7. THE Sweet SHALL provide helpful compiler errors for misuse
 
 ### Requirement 23: Deployment Support
 
@@ -359,13 +359,13 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. THE Axiom SHALL compile to a single native binary with no runtime dependencies
-2. THE Axiom SHALL support running behind a reverse proxy for TLS termination
-3. THE Axiom SHALL support containerized deployment with Docker
-4. THE Axiom SHALL support orchestration with Kubernetes
-5. THE Axiom SHALL provide health check endpoints for load balancers
-6. THE Axiom SHALL support graceful shutdown to drain in-flight requests
-7. THE Axiom SHALL support configuration via environment variables
+1. THE Sweet SHALL compile to a single native binary with no runtime dependencies
+2. THE Sweet SHALL support running behind a reverse proxy for TLS termination
+3. THE Sweet SHALL support containerized deployment with Docker
+4. THE Sweet SHALL support orchestration with Kubernetes
+5. THE Sweet SHALL provide health check endpoints for load balancers
+6. THE Sweet SHALL support graceful shutdown to drain in-flight requests
+7. THE Sweet SHALL support configuration via environment variables
 
 ### Requirement 24: Monitoring and Observability
 
@@ -373,14 +373,14 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. THE Axiom SHALL expose request latency histograms (p50, p95, p99, p999)
-2. THE Axiom SHALL expose requests per second metrics per core
-3. THE Axiom SHALL expose memory arena utilization metrics
-4. THE Axiom SHALL expose connection pool statistics
-5. THE Axiom SHALL expose background task queue depth metrics
-6. THE Axiom SHALL expose error rates by error type
-7. THE Axiom SHALL support exporting metrics to Prometheus
-8. THE Axiom SHALL support distributed tracing with trace IDs
+1. THE Sweet SHALL expose request latency histograms (p50, p95, p99, p999)
+2. THE Sweet SHALL expose requests per second metrics per core
+3. THE Sweet SHALL expose memory arena utilization metrics
+4. THE Sweet SHALL expose connection pool statistics
+5. THE Sweet SHALL expose background task queue depth metrics
+6. THE Sweet SHALL expose error rates by error type
+7. THE Sweet SHALL support exporting metrics to Prometheus
+8. THE Sweet SHALL support distributed tracing with trace IDs
 
 ### Requirement 25: Cross-Platform Support
 
@@ -388,9 +388,9 @@ Axiom is a high-performance API server framework written in Mojo that targets su
 
 #### Acceptance Criteria
 
-1. THE Axiom SHALL run on Linux with full feature support
-2. THE Axiom SHALL run on macOS with epoll fallback for development
-3. THE Axiom SHALL require x86_64 CPU with AVX2 support for SIMD operations
-4. THE Axiom SHALL require Linux kernel 5.1+ for io_uring support
-5. THE Axiom SHALL fall back to epoll on kernels without io_uring
-6. THE Axiom SHALL require Mojo compiler version 0.26.3 or later
+1. THE Sweet SHALL run on Linux with full feature support
+2. THE Sweet SHALL run on macOS with epoll fallback for development
+3. THE Sweet SHALL require x86_64 CPU with AVX2 support for SIMD operations
+4. THE Sweet SHALL require Linux kernel 5.1+ for io_uring support
+5. THE Sweet SHALL fall back to epoll on kernels without io_uring
+6. THE Sweet SHALL require Mojo compiler version 0.26.3 or later

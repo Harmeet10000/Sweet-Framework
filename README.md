@@ -155,7 +155,7 @@ fn hello_handler(request: HttpRequest, params: RouteParams) raises -> Result[Htt
 
 ## Documentation
 
-- [Design Document](.kiro/specs/axiom-api-framework/design.md) - Comprehensive architecture and algorithms
+- [Design Document](.kiro/specs/sweet-api-framework/design.md) - Comprehensive architecture and algorithms
 
 ## License
 

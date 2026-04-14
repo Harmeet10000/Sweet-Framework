@@ -2831,7 +2831,7 @@ fn setup_background_tasks(app: Application) raises:
     # Create task queue
     var queue = RedisTaskQueue(
         redis_client=app.redis_client,
-        queue_name="axiom:tasks"
+        queue_name="sweet:tasks"
     )
     
     # Create executor
