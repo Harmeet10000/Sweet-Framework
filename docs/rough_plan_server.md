@@ -65,8 +65,7 @@ Node.js is bottlenecked by its single-threaded event loop. Go uses Goroutines. S
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > You understand high-level architecture, but the true bottleneck in systems programming isn't routing—it's memory fragmentation. Even with Mojo's ownership model, dynamically allocating memory for HTTP headers, routing parameters, and JSON payloads across thousands of concurrent requests will thrash the system allocator (`malloc`).
 >
 > The insider secret to Sweet's theoretical speed is the implementation of a **Per-Request Bump Memory Arena**.
@@ -227,8 +226,7 @@ The Developer Experience must rival FastAPI, but with zero runtime penalty.
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > You want the real architectural secret of building a server that hits 10+ million requests per second? It’s not just SIMD or `io_uring`. It’s **Cache-Line Aligned State Machines**.
 >
 > In traditional frameworks, processing an HTTP request touches memory all over the heap. The Router is here, the Auth middleware is there, the DB pool state is somewhere else. This causes L1/L2 CPU cache misses, forcing the CPU to fetch from main RAM, which takes ~100 nanoseconds (an eternity).
@@ -302,8 +300,7 @@ Memory fragmentation kills speed. When a request comes in: `GET /api/v1/users/98
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > Everyone talks about event loops and zero-copy, but the final boss of API latency is the Linux TCP stack itself.
 >
 > By default, Linux uses **Nagle's Algorithm**, which buffers small packets to send them together to save bandwidth. For an API server, this is catastrophic. It introduces an artificial 40ms delay. You must explicitly set the `TCP_NODELAY` socket option on the file descriptor immediately after the `accept()` call.
@@ -395,8 +392,7 @@ At this exact moment, the framework shifts from the imperative C-style memory ma
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > You have engineered a zero-copy parser and a lock-free Reactor. But if you deploy this on a multi-core Linux machine, it will still underperform. Why? Because you ignored **Receive-Side Scaling (RSS) and NUMA topologies**.
 >
 > When a packet hits your server's Network Interface Card (NIC), the NIC triggers a hardware interrupt to wake up a CPU core to process the TCP stack. If the NIC wakes up Core 0, but your `io_uring` worker for that specific socket is pinned to Core 3, the kernel has to copy the TCP payload across the CPU interconnect bus. You just ruined your zero-copy architecture at the hardware level.
@@ -460,8 +456,7 @@ Instead of Actors with mutable state, we use **SPSC (Single-Producer, Single-Con
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > If you truly adopt the Shared-Nothing Thread-per-Core architecture, you will eventually hit a wall where the Linux Kernel's networking stack itself becomes the bottleneck, long before Mojo breaks a sweat. `io_uring` is fast, but it still relies on the kernel's TCP/IP stack allocating `sk_buff` structures.
 >
 > The ultimate, undocumented leap in modern system architecture is **AF_XDP (eXpress Data Path)**.
@@ -548,8 +543,7 @@ The Flusher Core utilizes Mojo's bare-metal file I/O to memory-map (`mmap`) a lo
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > Most engineers view background tasks as a binary: it either runs on the web node or on a separate worker node.
 >
 > The insider secret to maximizing hardware utilization is **Dynamic Work Stealing via Load Shedding**.
@@ -622,8 +616,7 @@ To maintain the Sidekiq/Celery predictability, **Sweet itself does not execute t
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > You want predictable throughput, but you shouldn't leave performance on the table when the optimization takes literally three lines of code.
 >
 > The insider secret to bridging the gap between a "standard Redis queue" and "hyper-optimized broker handoff" is **RESP Pipelining via Micro-batching**.
@@ -773,8 +766,7 @@ The HTTP request pipeline never waits for a disk platter to spin or an SSD to co
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > You've eliminated heap allocations and blocked I/O, but if you profile your high-speed logger, you will see it spending 15% of its CPU time inside a single function: `gettimeofday()` or `clock_gettime()`.
 >
 > Every log line needs a timestamp. Making a system call to the kernel to ask for the time on every single log line will destroy your throughput, even with Linux's optimized vDSO (Virtual System Calls).
@@ -897,8 +889,7 @@ FastAPI's startup time gets noticeably slower as your application grows because 
 
 ---
 
-> ### For the Chosen Ones
->
+Read This>
 > If you are going to write a native async HTTP client inside your server framework, you must implement **Memory Arena Lending**.
 >
 > When your server receives a request from Client A, and then makes an outbound HTTP call to Microservice B to fetch data, most frameworks allocate a new block of memory for that outbound request.
@@ -1278,8 +1269,7 @@ app.configure_websockets(
 3.  Simultaneously, the Flusher Core is `SUBSCRIBE`d to Redis. [cite_start]When Redis broadcasts a message from another server in the fleet, the Flusher Core receives it and immediately drops the pointer into the local HTTP cores' SPSC queues[cite: 334].
 4.  [cite_start]The HTTP cores then execute the `uWebSockets`-style local drain, pushing the bytes to the individual FDs[cite: 742].
 
-> ### For the Chosen Ones
-> If you truly want to mimic `uWebSockets`' efficiency in the Redis backplane, you must handle the **Topic String Allocation Trap**.
+Read This> If you truly want to mimic `uWebSockets`' efficiency in the Redis backplane, you must handle the **Topic String Allocation Trap**.
 > 
 > When Redis sends a published message over the wire, it includes the topic name (e.g., `message \r\n chat_room_1 \r\n hello`). If your Redis adapter allocates a new string for `"chat_room_1"` on every incoming broadcast just to do a hash map lookup, your garbage collector (or memory allocator) will choke under heavy load.
 >

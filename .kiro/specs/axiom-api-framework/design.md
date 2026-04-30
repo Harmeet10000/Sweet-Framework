@@ -41,8 +41,8 @@ graph TD
 
 ### Thread-Per-Core Architecture
 
-
 Each worker core operates independently with its own:
+
 - io_uring/epoll reactor instance
 - Memory arena for request allocation
 - Background task SPSC queue (multi-core) or local deque (single-core)
@@ -82,6 +82,7 @@ sequenceDiagram
 **Purpose**: Manages async I/O operations using io_uring (Linux) or epoll (fallback) for socket events
 
 **Interface**:
+
 ```mojo
 @value
 struct ReactorConfig:
@@ -111,18 +112,19 @@ struct IoUringReactor(Reactor):
 ```
 
 **Responsibilities**:
+
 - Accept incoming TCP connections
 - Submit async read/write operations to io_uring
 - Poll for completion events
 - Dispatch events to registered handlers
 - Configure socket options (TCP_NODELAY, TCP_QUICKACK)
 
-
 ### Component 2: HTTP Parser
 
 **Purpose**: Zero-copy HTTP/1.1 parsing using SIMD instructions and StringRef for header/body access
 
 **Interface**:
+
 ```mojo
 @value
 struct HttpMethod:
@@ -168,18 +170,19 @@ struct SimdHttpParser(HttpParser):
 ```
 
 **Responsibilities**:
+
 - Parse HTTP/1.1 request line (method, path, version)
 - Parse headers using SIMD for CRLF detection
 - Extract query parameters from path
 - Maintain zero-copy StringRef to original buffer
 - Validate HTTP protocol compliance
 
-
 ### Component 3: AOT Router
 
 **Purpose**: Compile-time route compilation into radix trie or DFA for O(1) or O(log n) route matching
 
 **Interface**:
+
 ```mojo
 @value
 struct RouteParams:
@@ -222,18 +225,19 @@ struct RadixNode:
 ```
 
 **Responsibilities**:
+
 - Compile route patterns into radix trie at build time
 - Match incoming paths to handlers in O(path_length)
 - Extract path parameters (e.g., /users/:id)
 - Support wildcard routes (e.g., /static/*)
 - Generate compile-time route validation errors
 
-
 ### Component 4: Validation System
 
 **Purpose**: Compile-time schema validation with Pydantic-like DX and zero runtime cost
 
 **Interface**:
+
 ```mojo
 trait Validator[T]:
     fn validate(self, value: T) raises -> Result[T, ValidationError]
@@ -281,18 +285,19 @@ fn validate_request[T: AnyType](request: HttpRequest) raises -> Result[T, Valida
 ```
 
 **Responsibilities**:
+
 - Define validation schemas at compile time
 - Generate validation code during compilation
 - Provide zero-cost abstractions for type checking
 - Support nested object validation
 - Generate descriptive error messages
 
-
 ### Component 5: JSON Serializer
 
 **Purpose**: SIMD-accelerated JSON parsing and serialization with zero-copy where possible
 
 **Interface**:
+
 ```mojo
 trait JsonSerializable:
     fn to_json(self) raises -> String
@@ -319,6 +324,7 @@ fn parse_number_simd(buffer: StringRef) raises -> Result[Float64, JsonError]:
 ```
 
 **Responsibilities**:
+
 - Serialize Mojo structs to JSON strings
 - Deserialize JSON to Mojo structs
 - Use SIMD for delimiter detection and parsing
@@ -330,6 +336,7 @@ fn parse_number_simd(buffer: StringRef) raises -> Result[Float64, JsonError]:
 **Purpose**: Railway Oriented Programming middleware chain with lifecycle hooks
 
 **Interface**:
+
 ```mojo
 alias MiddlewareResult = Result[HttpRequest, Error]
 alias HandlerResult = Result[HttpResponse, Error]
@@ -366,18 +373,19 @@ struct MiddlewareChain:
 ```
 
 **Responsibilities**:
+
 - Execute middleware in defined order
 - Support lifecycle hooks (onRequest, preHandler, onResponse, onError)
 - Propagate errors through Railway Oriented Programming
 - Allow middleware to short-circuit the chain
 - Maintain type safety through Result types
 
-
 ### Component 7: Plugin System
 
 **Purpose**: Compile-time trait composition for encapsulated, reusable plugins
 
 **Interface**:
+
 ```mojo
 trait Plugin:
     fn name(self) -> String
@@ -413,6 +421,7 @@ struct CorsPlugin(Plugin):
 ```
 
 **Responsibilities**:
+
 - Provide plugin lifecycle management
 - Allow plugins to register routes, middleware, and hooks
 - Support compile-time plugin composition
@@ -424,6 +433,7 @@ struct CorsPlugin(Plugin):
 **Purpose**: Both functional DI and decorator-based DI for flexible dependency management
 
 **Interface**:
+
 ```mojo
 # Functional DI
 @value
@@ -454,18 +464,19 @@ struct DIContainer:
 ```
 
 **Responsibilities**:
+
 - Manage dependency lifecycles (singleton, transient, scoped)
 - Resolve dependencies at compile time where possible
 - Support both functional and decorator syntax
 - Provide type-safe dependency injection
 - Enable testing through dependency mocking
 
-
 ### Component 9: Background Task System
 
 **Purpose**: Broker-backed task queue with per-core SPSC buffers (multi-core) or local deque (single-core)
 
 **Interface**:
+
 ```mojo
 @value
 struct Task:
@@ -516,18 +527,19 @@ struct TaskExecutor:
 ```
 
 **Responsibilities**:
+
 - Enqueue background tasks without blocking request handling
 - Support both local (single-core) and distributed (multi-core) execution
 - Implement retry logic with exponential backoff
 - Provide task acknowledgment and failure handling
 - Integrate with Redis for cross-core task distribution
 
-
 ### Component 10: Cron Scheduler
 
 **Purpose**: AOT cron compilation with min-heap execution and pluggable job stores
 
 **Interface**:
+
 ```mojo
 @value
 struct CronExpression:
@@ -577,18 +589,19 @@ struct CronScheduler:
 ```
 
 **Responsibilities**:
+
 - Parse and compile cron expressions at build time
 - Schedule jobs using min-heap for efficient next-job lookup
 - Execute jobs at specified times
 - Persist job state to pluggable storage
 - Support job registration and removal
 
-
 ### Component 11: Structured Logger
 
 **Purpose**: Zero-allocation structured logging with Pino performance and Loguru DX
 
 **Interface**:
+
 ```mojo
 @value
 struct LogLevel:
@@ -650,18 +663,19 @@ struct Logger:
 ```
 
 **Responsibilities**:
+
 - Provide structured logging with key-value fields
 - Use memory arena for zero-allocation logging
 - Support multiple log sinks (stdout, file, network)
 - Buffer log writes for performance
 - Include source location information
 
-
 ### Component 12: HTTP Client
 
 **Purpose**: Native async HTTP client with httpx DX and undici performance
 
 **Interface**:
+
 ```mojo
 @value
 struct ClientRequest:
@@ -720,18 +734,19 @@ struct DnsResolver:
 ```
 
 **Responsibilities**:
+
 - Manage connection pooling per host
 - Reuse idle connections
 - Perform async DNS resolution using thread pool
 - Support all HTTP methods
 - Handle timeouts and retries
 
-
 ### Component 13: WebSocket Manager
 
 **Purpose**: Native Mojo WebSocket implementation with zero-copy SIMD frame unmasking and lock-free broadcasting
 
 **Interface**:
+
 ```mojo
 @value
 struct WebSocketOpcode:
@@ -912,6 +927,7 @@ struct RedisPubSubAdapter:
 ```
 
 **Responsibilities**:
+
 - Perform WebSocket handshake per RFC 6455
 - Parse WebSocket frames with state machine
 - Unmask payload using AVX-512 SIMD (zero-copy)
@@ -926,12 +942,12 @@ struct RedisPubSubAdapter:
 - Optional paranoia mode: aggressive ping/pong takedowns
 - Redis Pub/Sub adapter for cross-instance broadcasting
 
-
 ### Component 14: Server-Sent Events (SSE) Manager
 
 **Purpose**: Long-lived HTTP connections with chunked encoding for server-to-client event streaming
 
 **Interface**:
+
 ```mojo
 @value
 struct SSEConnection:
@@ -1105,6 +1121,7 @@ struct SSEStreamHandler:
 ```
 
 **Responsibilities**:
+
 - Upgrade HTTP connection to SSE with proper headers
 - Format SSE events with zero-copy direct buffer writes
 - Support event ID, event type, data, and retry fields
@@ -1116,12 +1133,12 @@ struct SSEStreamHandler:
 - Generator/async stream pattern for yielding events
 - Chunked transfer encoding for streaming
 
-
 ### Component 15: OpenAPI Generator
 
 **Purpose**: Compile-time OpenAPI 3.0 schema generation from route definitions
 
 **Interface**:
+
 ```mojo
 @value
 struct OpenApiSpec:
@@ -1173,18 +1190,19 @@ struct OpenApiGenerator:
 ```
 
 **Responsibilities**:
+
 - Extract route metadata at compile time
 - Generate OpenAPI schema from type annotations
 - Support request/response body schemas
 - Document path parameters and query parameters
 - Serve OpenAPI JSON at /openapi.json
 
-
 ### Component 16: Error Handling (Railway Oriented Programming)
 
 **Purpose**: Railway Oriented Programming with Result monad for explicit error handling
 
 **Interface**:
+
 ```mojo
 @value
 struct Result[T, E]:
@@ -1250,12 +1268,12 @@ struct ErrorKind:
 ```
 
 **Responsibilities**:
+
 - Provide Result type for explicit error handling
 - Support error chaining and transformation
 - Enable Railway Oriented Programming pattern
 - Convert errors to HTTP responses
 - Maintain error context and stack traces
-
 
 ## Data Models
 
@@ -1281,6 +1299,7 @@ struct RequestContext:
 ```
 
 **Validation Rules**:
+
 - request must be valid HTTP request
 - arena must be initialized before use
 - start_time must be set on context creation
@@ -1323,10 +1342,10 @@ struct Application:
 ```
 
 **Validation Rules**:
+
 - config must pass validation before server starts
 - At least one route must be registered
 - Middleware order matters (FIFO execution)
-
 
 ### Model 3: Memory Arena
 
@@ -1356,6 +1375,7 @@ struct Arena:
 ```
 
 **Validation Rules**:
+
 - capacity must be positive
 - offset must never exceed capacity
 - reset() called after each request completes
@@ -1385,10 +1405,10 @@ struct ConnectionState:
 ```
 
 **Validation Rules**:
+
 - fd must be valid file descriptor (>= 0)
 - Buffers must be allocated before use
 - State transitions: READING -> WRITING -> CLOSED
-
 
 ## Algorithmic Pseudocode
 
@@ -1451,12 +1471,14 @@ fn process_request(
 ```
 
 **Preconditions:**
+
 - reactor has valid connection with data in read buffer
 - parser buffer contains complete HTTP request
 - router has at least one registered route
 - arena has sufficient capacity for request processing
 
 **Postconditions:**
+
 - Returns Result[HttpResponse, Error]
 - If Ok: response is valid and serializable
 - If Err: error contains descriptive message and appropriate error kind
@@ -1464,7 +1486,6 @@ fn process_request(
 - No memory leaks
 
 **Loop Invariants:** N/A (sequential processing, no loops)
-
 
 ### SIMD HTTP Parsing Algorithm
 
@@ -1601,21 +1622,23 @@ fn find_crlf_simd(
 ```
 
 **Preconditions:**
+
 - buffer contains valid HTTP/1.1 request data
 - size accurately represents buffer length
 - buffer is readable for entire size
 
 **Postconditions:**
+
 - Returns Result[HttpRequest, ParseError]
 - If Ok: all StringRef fields point to valid buffer regions
 - If Err: error describes parsing failure
 - No heap allocations (zero-copy)
 
 **Loop Invariants:**
+
 - Header parsing loop: all previously parsed headers are valid and stored
 - SIMD search loop: all bytes before current position have been checked
 - pos never exceeds size
-
 
 ### Radix Trie Route Matching Algorithm
 
@@ -1689,22 +1712,24 @@ fn match_route_radix(
 ```
 
 **Preconditions:**
+
 - node is valid RadixNode from compiled trie
 - path is valid HTTP path (starts with /)
 - pos is valid index within path bounds
 - params is initialized RouteParams
 
 **Postconditions:**
+
 - Returns Result[RouteMatch, RouteError]
 - If Ok: RouteMatch contains valid handler and all extracted parameters
 - If Err: no route matched the path
 - Time complexity: O(path_length) in best case, O(path_length * num_children) worst case
 
 **Loop Invariants:**
+
 - Children iteration: all previously checked children failed to match
 - Parameter extraction: param_end never exceeds path length
 - Recursion depth bounded by path segment count
-
 
 ### io_uring Reactor Event Loop Algorithm
 
@@ -1788,23 +1813,25 @@ fn reactor_event_loop(inout reactor: IoUringReactor) raises -> None:
 ```
 
 **Preconditions:**
+
 - reactor.ring is initialized and valid
 - reactor.running is True
 - reactor.handlers contains valid socket handlers
 - io_uring kernel support is available
 
 **Postconditions:**
+
 - Loop continues until reactor.running is False
 - All completion events are processed
 - Idle connections are cleaned up
 - No resource leaks
 
 **Loop Invariants:**
+
 - reactor.ring remains in valid state throughout
 - All submitted operations eventually complete
 - Handler map is consistent with active connections
 - Memory is bounded (no unbounded growth)
-
 
 ### SIMD JSON Serialization Algorithm
 
@@ -1961,21 +1988,23 @@ fn write_escaped_string_simd(
 ```
 
 **Preconditions:**
+
 - obj contains only JSON-serializable types
 - Buffer has sufficient capacity for output
 - All strings are valid UTF-8
 
 **Postconditions:**
+
 - Returns valid JSON string
 - All special characters are properly escaped
 - Output is well-formed JSON
 - No buffer overflows
 
 **Loop Invariants:**
+
 - Key-value iteration: all previous entries are valid JSON
 - SIMD escaping loop: all processed chunks are properly escaped
 - Buffer position never exceeds allocated capacity
-
 
 ### Background Task Queue Algorithm
 
@@ -2119,21 +2148,23 @@ fn execute_background_tasks(
 ```
 
 **Preconditions:**
+
 - queue is initialized with valid Redis connection (multi-core) or local deque (single-core)
 - executor has registered handlers for task types
 - Tasks have valid id and type fields
 
 **Postconditions:**
+
 - Tasks are processed exactly once (at-least-once with idempotency)
 - Failed tasks are retried up to max_retries
 - Permanently failed tasks move to dead letter queue
 - No task loss
 
 **Loop Invariants:**
+
 - Execution loop: all dequeued tasks are either completed, retried, or dead-lettered
 - No tasks are lost or duplicated
 - Queue state remains consistent
-
 
 ### Cron Scheduler Min-Heap Algorithm
 
@@ -2241,22 +2272,24 @@ fn calculate_next_cron_execution(
 ```
 
 **Preconditions:**
+
 - scheduler.heap is valid min-heap ordered by next_run
 - All jobs have valid cron expressions and handlers
 - job_store is initialized and accessible
 
 **Postconditions:**
+
 - Jobs execute at correct scheduled times (within 1 second accuracy)
 - Heap maintains min-heap property after all operations
 - Job state is persisted to storage
 - No jobs are lost or skipped
 
 **Loop Invariants:**
+
 - Main loop: heap.peek() is always the next job to execute
 - Execution loop: all jobs with next_run <= now are executed
 - Cron calculation loop: current_time is always >= from_time
 - Heap property: parent.next_run <= children.next_run
-
 
 ### WebSocket Frame Processing Algorithm
 
@@ -2411,11 +2444,13 @@ fn process_websocket_frame(
 ```
 
 **Preconditions:**
+
 - buffer contains complete WebSocket frame
 - fd is valid WebSocket connection in OPEN state
 - manager is initialized with valid handler
 
 **Postconditions:**
+
 - Frame is parsed and validated
 - Payload is unmasked (zero-copy, in-place)
 - Handler is invoked for data frames
@@ -2423,10 +2458,10 @@ fn process_websocket_frame(
 - Invalid frames result in connection closure
 
 **Loop Invariants:**
+
 - Buffer position never exceeds size
 - All parsed fields are valid per RFC 6455
 - Connection state remains consistent
-
 
 ### WebSocket Broadcasting Algorithm
 
@@ -2507,20 +2542,22 @@ fn broadcast_to_topic(
 ```
 
 **Preconditions:**
+
 - topic_registry contains valid subscriber mappings
 - data pointer is valid for size bytes
 - manager is initialized
 
 **Postconditions:**
+
 - All active subscribers receive the message
 - Failed subscribers are removed from registry
 - Lock-free operation (no blocking)
 
 **Loop Invariants:**
+
 - All previous subscribers have been processed
 - Failed sends are tracked for cleanup
 - No duplicate sends to same subscriber
-
 
 ### SSE Event Streaming Algorithm
 
@@ -2603,20 +2640,22 @@ fn stream_sse_events(
 ```
 
 **Preconditions:**
+
 - fd is valid SSE connection in OPEN state
 - stream is initialized and ready to yield events
 - reactor is running
 
 **Postconditions:**
+
 - All events are sent to client
 - Keep-alive comments maintain connection
 - Connection is closed gracefully when stream ends
 
 **Loop Invariants:**
+
 - All previous events have been sent successfully
 - Keep-alive timing is maintained
 - Connection remains open until stream ends or error occurs
-
 
 ### SSE Keep-Alive with Timing Wheel Algorithm
 
@@ -2676,16 +2715,19 @@ fn process_sse_keepalive(
 ```
 
 **Preconditions:**
+
 - keepalive_wheel is initialized with correct slot configuration
 - connections map contains active SSE connections
 - reactor is running
 
 **Postconditions:**
+
 - Keep-alive comments sent to all scheduled connections
 - Failed connections are closed and removed
 - Connections are rescheduled for next keep-alive
 
 **Loop Invariants:**
+
 - All FDs in current slot are processed
 - Timing wheel advances correctly
 - No duplicate processing of same FD
@@ -2693,11 +2735,11 @@ fn process_sse_keepalive(
 - No jobs are lost or skipped
 
 **Loop Invariants:**
+
 - Main loop: heap.peek() is always the next job to execute
 - Execution loop: all jobs with next_run <= now are executed
 - Cron calculation loop: current_time is always >= from_time
 - Heap property: parent.next_run <= children.next_run
-
 
 ## Example Usage
 
@@ -2774,7 +2816,6 @@ fn create_user_handler(request: HttpRequest, params: RouteParams) raises -> Resu
     response.headers["Content-Type"] = "application/json"
     return Ok(response)
 ```
-
 
 ### Middleware Example
 
@@ -2878,7 +2919,6 @@ fn signup_handler(request: HttpRequest, params: RouteParams) raises -> Result[Ht
     response.body = user.to_json()
     return Ok(response)
 ```
-
 
 ### Cron Jobs Example
 
@@ -3007,7 +3047,6 @@ fn get_user_with_decorator(
     return Ok(response)
 ```
 
-
 ### HTTP Client Example
 
 ```mojo
@@ -3106,7 +3145,6 @@ fn create_user_validated(request: HttpRequest, params: RouteParams) raises -> Re
     return Ok(response)
 ```
 
-
 ### WebSocket Example
 
 ```mojo
@@ -3196,7 +3234,6 @@ fn setup_redis_pubsub(ws_manager: WebSocketManager, redis_client: RedisClient) r
     # Publish to Redis when broadcasting locally
     # (This would be integrated into ws_manager.broadcast)
 ```
-
 
 ### Server-Sent Events (SSE) Example
 
@@ -3302,7 +3339,6 @@ fn setup_simple_sse(app: Application) raises:
         return Ok(response)
     )
 ```
-
 
 ## Correctness Properties
 
@@ -3788,20 +3824,21 @@ fn setup_simple_sse(app: Application) raises:
 
 **Validates: Requirements 22.8**
 
-
 ## Error Handling
 
 ### Error Scenario 1: HTTP Parse Error
 
 **Condition**: Malformed HTTP request received (invalid headers, missing CRLF, etc.)
 
-**Response**: 
+**Response**:
+
 - Parser returns `Err(ParseError)` with descriptive message
 - Error propagates through Railway Oriented Programming chain
 - Middleware `on_error` hook converts to HTTP 400 Bad Request
 - Connection remains open for next request (HTTP/1.1 keep-alive)
 
 **Recovery**:
+
 - Log parse error with request details
 - Send 400 response to client
 - Reset arena to reclaim memory
@@ -3812,12 +3849,14 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: No registered route matches the request path and method
 
 **Response**:
+
 - Router returns `Err(RouteError("Route not found"))`
 - Error propagates to error handling middleware
 - Convert to HTTP 404 Not Found response
 - Include helpful error message in response body
 
 **Recovery**:
+
 - Log 404 with requested path
 - Send 404 response with JSON error body
 - No retry needed (client error)
@@ -3828,12 +3867,14 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: Request body fails schema validation (invalid types, missing fields, constraint violations)
 
 **Response**:
+
 - Validator returns `Err(ValidationError)` with field-level errors
 - Error includes which fields failed and why
 - Convert to HTTP 422 Unprocessable Entity
 - Return detailed validation errors to client
 
 **Recovery**:
+
 - Log validation failure with details
 - Send 422 response with validation error details
 - Client should fix request and retry
@@ -3844,6 +3885,7 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: Handler function raises unexpected error (database error, external API failure, etc.)
 
 **Response**:
+
 - Handler returns `Err(Error)` with error details
 - Middleware `on_error` hook catches error
 - Log full error with stack trace
@@ -3851,6 +3893,7 @@ fn setup_simple_sse(app: Application) raises:
 - Return generic error message to client (hide internal details)
 
 **Recovery**:
+
 - Log error for debugging
 - Send 500 response to client
 - Reset arena to prevent memory leaks
@@ -3862,12 +3905,14 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: io_uring operation fails (read/write error, connection reset, etc.)
 
 **Response**:
+
 - Reactor receives negative result code from io_uring
 - Handler `on_error` callback invoked
 - Close connection gracefully
 - Clean up connection resources
 
 **Recovery**:
+
 - Log I/O error with connection details
 - Remove connection from active connections
 - Free connection buffers
@@ -3879,12 +3924,14 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: Background task handler raises error during execution
 
 **Response**:
+
 - Task executor catches error
 - Increment task retry_count
 - If retry_count < max_retries: re-enqueue with exponential backoff
 - If retry_count >= max_retries: move to dead letter queue
 
 **Recovery**:
+
 - Log task failure with error details
 - For transient errors: retry with backoff
 - For permanent failures: move to DLQ for manual inspection
@@ -3896,6 +3943,7 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: Cron job handler raises error during execution
 
 **Response**:
+
 - Scheduler catches error
 - Log error with job ID and details
 - Calculate next execution time
@@ -3903,6 +3951,7 @@ fn setup_simple_sse(app: Application) raises:
 - Do not retry immediately (wait for next scheduled time)
 
 **Recovery**:
+
 - Log job failure for monitoring
 - Job continues on schedule (not removed)
 - Consider alerting on repeated failures
@@ -3913,12 +3962,14 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: Request processing requires more memory than arena capacity
 
 **Response**:
+
 - Arena.allocate() raises Error("Arena out of memory")
 - Error propagates through ROP chain
 - Convert to HTTP 500 Internal Server Error
 - Reset arena immediately
 
 **Recovery**:
+
 - Log arena exhaustion with request details
 - Send 500 response to client
 - Reset arena to reclaim all memory
@@ -3930,12 +3981,14 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: HTTP client cannot acquire connection (all connections in use)
 
 **Response**:
+
 - ConnectionPool.acquire() blocks or returns error
 - Handler receives error
 - Convert to HTTP 503 Service Unavailable
 - Include Retry-After header
 
 **Recovery**:
+
 - Log pool exhaustion
 - Send 503 response to client
 - Client should retry after delay
@@ -3947,18 +4000,19 @@ fn setup_simple_sse(app: Application) raises:
 **Condition**: Background task queue cannot connect to Redis broker
 
 **Response**:
+
 - RedisClient operations return connection error
 - Task enqueue falls back to local buffer if available
 - If local buffer full: return error to caller
 - Log Redis connection failure
 
 **Recovery**:
+
 - Attempt Redis reconnection with exponential backoff
 - Use local buffer as temporary fallback
 - Alert on prolonged Redis unavailability
 - Tasks may be lost if both Redis and local buffer fail
 - Consider persistent local queue for durability
-
 
 ## Testing Strategy
 
@@ -4050,15 +4104,16 @@ fn setup_simple_sse(app: Application) raises:
    - Chunked encoding
 
 **Test Coverage Goals**:
+
 - Line coverage: >90%
 - Branch coverage: >85%
 - Critical paths: 100%
 
 **Testing Tools**:
+
 - Mojo's built-in testing framework
 - Custom test harness for async operations
 - Fuzzing for parser and validation
-
 
 ### Property-Based Testing Approach
 
@@ -4136,11 +4191,11 @@ fn setup_simple_sse(app: Application) raises:
     - Generator: Random SSE events with multi-line data
 
 **Property Test Execution**:
+
 - Run 1000+ random test cases per property
 - Shrink failing cases to minimal counterexamples
 - Seed-based reproducibility
 - Parallel execution where possible
-
 
 ### Integration Testing Approach
 
@@ -4223,18 +4278,19 @@ fn setup_simple_sse(app: Application) raises:
     - Test generator/async stream pattern
 
 **Integration Test Environment**:
+
 - Isolated test server instances
 - Mock external dependencies (Redis, databases)
 - Controlled network conditions
 - Automated test orchestration
 
 **Performance Benchmarks** (part of integration tests):
+
 - Requests per second (RPS) under load
 - Latency percentiles (p50, p95, p99)
 - Memory usage per request
 - Connection handling capacity
 - Background task throughput
-
 
 ## Performance Considerations
 
@@ -4243,6 +4299,7 @@ fn setup_simple_sse(app: Application) raises:
 **Target**: Sub-millisecond p99 latency for simple API operations
 
 **Strategies**:
+
 1. **Zero-Copy Parsing**: Use StringRef to avoid string allocations during HTTP parsing
 2. **SIMD Acceleration**: Leverage SIMD instructions for delimiter detection, JSON parsing, string escaping
 3. **Memory Arena**: O(1) deallocation by resetting arena offset after each request
@@ -4251,6 +4308,7 @@ fn setup_simple_sse(app: Application) raises:
 6. **io_uring**: Reduce syscall overhead with batched async I/O operations
 
 **Latency Budget** (target breakdown for typical request):
+
 - Network I/O: 100-200μs
 - HTTP parsing: 10-20μs
 - Route matching: 5-10μs
@@ -4265,6 +4323,7 @@ fn setup_simple_sse(app: Application) raises:
 **Target**: 1M+ requests per second on modern hardware (16+ cores)
 
 **Strategies**:
+
 1. **Thread-Per-Core**: Eliminate cross-core synchronization and cache coherency overhead
 2. **SO_REUSEPORT**: Kernel-level load balancing across worker cores
 3. **Shared-Nothing**: Each core operates independently with its own memory
@@ -4272,6 +4331,7 @@ fn setup_simple_sse(app: Application) raises:
 5. **Batched I/O**: Submit multiple io_uring operations in single syscall
 
 **Scalability**:
+
 - Linear scaling with core count (no contention)
 - Each core handles 60K-100K RPS
 - 16 cores: 960K-1.6M RPS
@@ -4282,6 +4342,7 @@ fn setup_simple_sse(app: Application) raises:
 **Target**: <1KB memory per request (excluding application data)
 
 **Strategies**:
+
 1. **Memory Arena**: Bump allocator with O(1) deallocation
 2. **Zero-Copy**: StringRef avoids string allocations during parsing
 3. **Stack Allocation**: Prefer stack over heap where possible
@@ -4289,6 +4350,7 @@ fn setup_simple_sse(app: Application) raises:
 5. **Buffer Pooling**: Reuse read/write buffers across connections
 
 **Memory Budget** (per request):
+
 - Arena allocation: 512 bytes (typical)
 - Request context: 128 bytes
 - Route params: 64 bytes
@@ -4299,6 +4361,7 @@ fn setup_simple_sse(app: Application) raises:
 ### CPU Optimization
 
 **Strategies**:
+
 1. **SIMD**: Vectorize hot paths (parsing, JSON, string operations)
 2. **Branch Prediction**: Optimize hot paths for predictable branches
 3. **Cache Locality**: Keep per-request data in L1/L2 cache
@@ -4306,6 +4369,7 @@ fn setup_simple_sse(app: Application) raises:
 5. **AOT Compilation**: MLIR optimizations at compile time
 
 **CPU Efficiency**:
+
 - Minimal allocations (arena-based)
 - Predictable execution paths
 - Cache-friendly data structures
@@ -4314,6 +4378,7 @@ fn setup_simple_sse(app: Application) raises:
 ### I/O Optimization
 
 **Strategies**:
+
 1. **io_uring**: Batched async I/O with reduced syscall overhead
 2. **Zero-Copy**: Avoid buffer copies where possible
 3. **Vectored I/O**: Use readv/writev for scattered buffers
@@ -4321,6 +4386,7 @@ fn setup_simple_sse(app: Application) raises:
 5. **Kernel Bypass**: Consider DPDK for extreme performance (future)
 
 **I/O Efficiency**:
+
 - Batched submissions reduce syscall overhead
 - Async operations prevent blocking
 - Connection reuse amortizes setup cost
@@ -4328,6 +4394,7 @@ fn setup_simple_sse(app: Application) raises:
 ### Monitoring and Profiling
 
 **Built-in Metrics**:
+
 - Request latency histograms (p50, p95, p99, p999)
 - Requests per second per core
 - Memory arena utilization
@@ -4336,11 +4403,11 @@ fn setup_simple_sse(app: Application) raises:
 - Error rates by type
 
 **Profiling Support**:
+
 - CPU profiling hooks
 - Memory allocation tracking
 - I/O operation tracing
 - Request tracing (distributed tracing ready)
-
 
 ## Security Considerations
 
@@ -4349,6 +4416,7 @@ fn setup_simple_sse(app: Application) raises:
 **Threats**: Injection attacks, buffer overflows, malformed input
 
 **Mitigations**:
+
 1. **Compile-Time Validation**: Schema validation at compile time prevents invalid data from reaching handlers
 2. **Bounds Checking**: All buffer accesses are bounds-checked
 3. **UTF-8 Validation**: Validate all string inputs are valid UTF-8
@@ -4356,6 +4424,7 @@ fn setup_simple_sse(app: Application) raises:
 5. **Sanitization**: Escape special characters in JSON output
 
 **Validation Rules**:
+
 - Maximum header size: 8KB
 - Maximum body size: 10MB (configurable)
 - Maximum path length: 2KB
@@ -4367,6 +4436,7 @@ fn setup_simple_sse(app: Application) raises:
 **Threats**: Buffer overflows, use-after-free, memory leaks
 
 **Mitigations**:
+
 1. **Mojo Safety**: Leverage Mojo's memory safety guarantees
 2. **Arena Allocation**: Bounded memory per request with automatic cleanup
 3. **RAII**: Resources automatically freed when out of scope
@@ -4374,6 +4444,7 @@ fn setup_simple_sse(app: Application) raises:
 5. **No Manual Memory Management**: Avoid raw pointers where possible
 
 **Memory Safety Guarantees**:
+
 - No buffer overflows (bounds checked)
 - No use-after-free (arena lifetime management)
 - No memory leaks (arena reset after request)
@@ -4382,12 +4453,14 @@ fn setup_simple_sse(app: Application) raises:
 ### Authentication and Authorization
 
 **Framework Support** (V1):
+
 1. **Middleware Hooks**: Authentication middleware can intercept requests
 2. **Request Context**: Store authenticated user in request state
 3. **Dependency Injection**: Inject auth services into handlers
 4. **JWT Support**: Plugin for JWT token validation (optional)
 
 **Example Authentication Middleware**:
+
 ```mojo
 struct JwtAuthMiddleware(Middleware):
     var secret_key: String
@@ -4412,6 +4485,7 @@ struct JwtAuthMiddleware(Middleware):
 **V1 Approach**: TLS termination at edge (load balancer, reverse proxy)
 
 **Rationale**:
+
 - Simplifies framework implementation
 - Offloads TLS overhead to dedicated infrastructure
 - Allows hardware acceleration of TLS
@@ -4422,12 +4496,14 @@ struct JwtAuthMiddleware(Middleware):
 ### Rate Limiting
 
 **Framework Support** (V1):
+
 1. **Middleware-Based**: Rate limiting middleware using Redis
 2. **Per-Core Counters**: Local rate limiting without cross-core sync
 3. **Token Bucket**: Standard token bucket algorithm
 4. **Sliding Window**: More accurate rate limiting
 
 **Example Rate Limiting Middleware**:
+
 ```mojo
 struct RateLimitMiddleware(Middleware):
     var redis: RedisClient
@@ -4453,6 +4529,7 @@ struct RateLimitMiddleware(Middleware):
 **Framework Support**: CORS middleware plugin
 
 **Configuration**:
+
 - Allowed origins (whitelist or wildcard)
 - Allowed methods (GET, POST, etc.)
 - Allowed headers
@@ -4463,6 +4540,7 @@ struct RateLimitMiddleware(Middleware):
 ### Security Headers
 
 **Recommended Headers** (via middleware):
+
 - `X-Content-Type-Options: nosniff`
 - `X-Frame-Options: DENY`
 - `X-XSS-Protection: 1; mode=block`
@@ -4472,6 +4550,7 @@ struct RateLimitMiddleware(Middleware):
 ### Logging and Auditing
 
 **Security Logging**:
+
 - Authentication failures
 - Authorization failures
 - Rate limit violations
@@ -4479,6 +4558,7 @@ struct RateLimitMiddleware(Middleware):
 - Suspicious patterns
 
 **PII Protection**:
+
 - Redact sensitive data in logs
 - Configurable field masking
 - Separate audit logs for compliance
@@ -4486,16 +4566,17 @@ struct RateLimitMiddleware(Middleware):
 ### Dependency Security
 
 **V1 Dependencies**:
+
 - Mojo standard library (trusted)
 - Redis client (optional, for background tasks)
 - Minimal external dependencies
 
 **Security Practices**:
+
 - Pin dependency versions
 - Regular security audits
 - Vulnerability scanning
 - Minimal attack surface
-
 
 ## Dependencies
 
@@ -4513,13 +4594,13 @@ struct RateLimitMiddleware(Middleware):
 
 ### Optional Dependencies
 
-3. **Redis Client** (for multi-core background tasks)
+1. **Redis Client** (for multi-core background tasks)
    - Version: TBD (implement native Mojo client or FFI to C library)
    - Purpose: Task queue broker, rate limiting, caching
    - License: BSD 3-Clause (if using hiredis via FFI)
    - Alternatives: Local SPSC queue for single-core deployments
 
-4. **io_uring** (Linux kernel feature)
+2. **io_uring** (Linux kernel feature)
    - Version: Kernel 5.1+ (5.10+ recommended)
    - Purpose: High-performance async I/O
    - Fallback: epoll for older kernels or non-Linux systems
@@ -4527,12 +4608,12 @@ struct RateLimitMiddleware(Middleware):
 
 ### Development Dependencies
 
-5. **Testing Framework**
+1. **Testing Framework**
    - Mojo's built-in testing utilities
    - Custom property-based testing framework
    - Benchmarking tools
 
-6. **Documentation Tools**
+2. **Documentation Tools**
    - Markdown for documentation
    - Mermaid for diagrams
    - OpenAPI generator (built-in)
@@ -4540,6 +4621,7 @@ struct RateLimitMiddleware(Middleware):
 ### System Requirements
 
 **Operating System**:
+
 - Linux (primary target)
   - Ubuntu 20.04+ (recommended)
   - RHEL 8+, CentOS 8+
@@ -4549,12 +4631,14 @@ struct RateLimitMiddleware(Middleware):
 - Windows (future support)
 
 **Hardware**:
+
 - CPU: x86_64 with AVX2 support (for SIMD)
 - RAM: 4GB minimum, 16GB+ recommended for production
 - Cores: 1+ (scales linearly with core count)
 - Network: 1Gbps+ for high throughput
 
 **Kernel Features** (Linux):
+
 - io_uring support (kernel 5.1+, 5.10+ recommended)
 - SO_REUSEPORT support (kernel 3.9+)
 - TCP_NODELAY, TCP_QUICKACK support
@@ -4562,17 +4646,20 @@ struct RateLimitMiddleware(Middleware):
 ### External Services (Optional)
 
 **Redis** (for distributed background tasks):
+
 - Version: 6.0+
 - Purpose: Task queue broker, caching, rate limiting
 - Deployment: Standalone or cluster
 - Alternatives: Local queue for single-core
 
 **PostgreSQL/MySQL** (application-level, not framework dependency):
+
 - Version: Any recent version
 - Purpose: Application data storage
 - Integration: Via application-provided database client
 
 **Monitoring/Observability** (optional):
+
 - Prometheus (metrics export)
 - Jaeger/Zipkin (distributed tracing)
 - Grafana (visualization)
@@ -4580,21 +4667,25 @@ struct RateLimitMiddleware(Middleware):
 ### Build Dependencies
 
 **Mojo Compiler**:
+
 - Version: 0.26.3+ (nightly builds supported)
 - Purpose: Compile Mojo source to native binary
 - Installation: Via Modular CLI
 
 **Build Tools**:
+
 - Make or similar build system
 - Git for version control
 
 ### Deployment Dependencies
 
 **Container Runtime** (optional):
+
 - Docker or Podman for containerized deployment
 - Kubernetes for orchestration
 
 **Reverse Proxy** (recommended for production):
+
 - Nginx or HAProxy for TLS termination
 - Load balancing across instances
 - Static file serving
@@ -4602,31 +4693,35 @@ struct RateLimitMiddleware(Middleware):
 ### Dependency Management Strategy
 
 **Minimize Dependencies**:
+
 - Keep external dependencies minimal
 - Prefer Mojo standard library
 - Implement critical components natively
 
 **Version Pinning**:
+
 - Pin all dependency versions
 - Test upgrades in staging
 - Document breaking changes
 
 **Security Updates**:
+
 - Monitor security advisories
 - Automated vulnerability scanning
 - Rapid patching process
 
 **Licensing**:
+
 - Prefer permissive licenses (MIT, Apache, BSD)
 - Avoid GPL for library code
 - Document all licenses
-
 
 ## Implementation Roadmap
 
 ### Phase 1: Core Foundation (Weeks 1-4)
 
 **Deliverables**:
+
 - Network reactor (io_uring/epoll)
 - HTTP/1.1 parser with SIMD
 - Basic routing (radix trie)
@@ -4635,6 +4730,7 @@ struct RateLimitMiddleware(Middleware):
 - Simple request-response cycle
 
 **Success Criteria**:
+
 - Handle basic GET/POST requests
 - Parse HTTP/1.1 correctly
 - Route to handlers
@@ -4643,6 +4739,7 @@ struct RateLimitMiddleware(Middleware):
 ### Phase 2: Advanced Features (Weeks 5-8)
 
 **Deliverables**:
+
 - Middleware system with ROP
 - Validation framework
 - JSON serialization with SIMD
@@ -4651,6 +4748,7 @@ struct RateLimitMiddleware(Middleware):
 - OpenAPI generation
 
 **Success Criteria**:
+
 - Middleware chain execution
 - Request validation
 - JSON round-trip
@@ -4659,6 +4757,7 @@ struct RateLimitMiddleware(Middleware):
 ### Phase 3: Async Operations (Weeks 9-12)
 
 **Deliverables**:
+
 - Background task queue (Redis + SPSC)
 - Cron scheduler with min-heap
 - HTTP client with connection pooling
@@ -4666,6 +4765,7 @@ struct RateLimitMiddleware(Middleware):
 - Structured logging
 
 **Success Criteria**:
+
 - Enqueue and execute background tasks
 - Schedule and run cron jobs
 - Make HTTP requests to external APIs
@@ -4674,6 +4774,7 @@ struct RateLimitMiddleware(Middleware):
 ### Phase 4: Optimization & Polish (Weeks 13-16)
 
 **Deliverables**:
+
 - Performance tuning (SIMD, zero-copy)
 - Comprehensive testing (unit, property, integration)
 - Documentation and examples
@@ -4681,6 +4782,7 @@ struct RateLimitMiddleware(Middleware):
 - Production hardening
 
 **Success Criteria**:
+
 - Sub-millisecond p99 latency
 - 1M+ RPS on 16 cores
 - >90% test coverage
@@ -4689,6 +4791,7 @@ struct RateLimitMiddleware(Middleware):
 ### V2 Features (Future)
 
 **Out of Scope for V1**:
+
 - HTTP/2 and HTTP/3 support
 - c-ares DNS integration
 - Dynamic cross-core work stealing
@@ -4706,4 +4809,3 @@ Sweet is a high-performance API framework for Mojo that combines cutting-edge pe
 The V1 scope includes comprehensive real-time communication support with native WebSocket and Server-Sent Events (SSE) implementations. WebSocket features zero-copy SIMD frame unmasking, lock-free broadcasting, and Redis Pub/Sub integration for cross-instance communication. SSE provides efficient event streaming with zero-copy formatting and hashed timing wheel keep-alives.
 
 The design prioritizes simplicity, correctness, and performance in that order, ensuring a solid foundation for building high-performance APIs in Mojo.
-
