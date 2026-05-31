@@ -1,61 +1,80 @@
 # Security Policy
 
+## Supported Versions
+
+We provide security updates for the following versions:
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 0.x.x   | :white_check_mark: |
+
+Once Sweet reaches 1.0.0:
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 1.x.x   | :white_check_mark: |
+| < 1.0   | :x:                |
+
 ## Reporting Security Vulnerabilities
 
-If you discover a security vulnerability in Sweet, please email security@sweet-framework.dev with:
+**Please do not report security vulnerabilities through public GitHub issues.**
 
-- Description of the vulnerability
-- Steps to reproduce (if applicable)
-- Potential impact
-- Suggested fix (if available)
+If you discover a security vulnerability in Sweet, please report it privately:
 
-**Please do not open public issues for security vulnerabilities.**
+### How to Report
 
-We will acknowledge receipt of your report within 48 hours and provide updates on our progress.
+1. **Email:** security@sweet-framework.dev (preferred)
+2. **GitHub Security Advisory:** Use the "Report a vulnerability" button in the Security tab
+
+### What to Include
+
+- **Description** of the vulnerability
+- **Steps to reproduce** (if applicable)
+- **Potential impact** and severity assessment
+- **Affected versions**
+- **Suggested fix** (if available)
+- **Your contact information** for follow-up
+
+### Response Timeline
+
+- **Acknowledgment:** Within 48 hours
+- **Initial assessment:** Within 5 business days
+- **Status updates:** Every 7 days until resolved
+- **Fix timeline:** Depends on severity (critical: <7 days, high: <30 days)
+
+### Disclosure Policy
+
+- We will work with you to understand and resolve the issue
+- We request that you do not publicly disclose the vulnerability until we've released a fix
+- We will credit you in the security advisory (unless you prefer to remain anonymous)
+- We may request a CVE for significant vulnerabilities
 
 ## Security Considerations
 
-### Input Validation
+Sweet is designed with security in mind. Here are key security features and considerations:
 
-- All user input should be validated and sanitized
-- Use the built-in validation system for request data
-- Implement rate limiting for sensitive endpoints
-- Validate file uploads and sizes
+### Built-in Security Features
 
-### Authentication & Authorization
+#### Input Validation
+- **Maximum header size:** 8KB (configurable)
+- **Maximum body size:** 10MB (configurable)
+- **Maximum path length:** 2KB
+- **Maximum query string:** 4KB
+- **Maximum header count:** 100
+- **UTF-8 validation:** All string inputs validated
+- **Bounds checking:** All buffer accesses checked
 
-- Use HTTPS for all communications
-- Implement proper authentication mechanisms
-- Use the JWT plugin for token-based auth
-- Validate permissions on protected resources
+#### Memory Safety
+- **Arena allocator:** Prevents buffer overflows
+- **Zero-copy parsing:** Reduces attack surface
+- **Automatic cleanup:** Memory freed after each request
+- **No use-after-free:** Mojo's ownership system
 
-### Data Protection
-
-- Encrypt sensitive data at rest and in transit
-- Use secure headers (HSTS, CSP, X-Frame-Options, etc.)
-- Implement CORS properly to prevent unauthorized access
-- Sanitize error messages to avoid information leakage
-
-### Dependency Management
-
-- Keep dependencies up to date
-- Review security advisories regularly
-- Use lock files for reproducible builds
-- Audit dependencies for known vulnerabilities
-
-### WebSocket Security
-
-- Validate WebSocket origins
-- Implement rate limiting on WebSocket messages
-- Use WSS (WebSocket Secure) in production
-- Properly handle connection closures
-
-### Logging & Monitoring
-
-- Log security-relevant events
-- Monitor for suspicious patterns
-- Implement alerting for security events
-- Regularly review logs for anomalies
+#### Network Security
+- **Rate limiting:** Built-in middleware support
+- **CORS:** Configurable cross-origin policies
+- **WebSocket security:** Origin validation, frame size limits
+- **SSE security:** Connection limits, keep-alive monitoring
 
 ## Security Best Practices for Users
 

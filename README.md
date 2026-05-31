@@ -39,6 +39,19 @@ Worker Core (thread-per-core, isolated)
 
 ## Quick Start
 
+### Installation
+
+```bash
+# Install dependencies
+./scripts/install-deps.sh
+
+# Verify installation
+mojo --version
+pkg-config --modversion libuv
+```
+
+### Hello World
+
 ```mojo
 from sweet import Application, ServerConfig, HttpMethod, HttpResponse
 
@@ -46,7 +59,7 @@ fn main() raises:
     var config = ServerConfig(
         host="0.0.0.0",
         port=8000,
-        num_workers=4
+        num_workers=1  # V1: Single-threaded
     )
     
     var app = Application(config)
@@ -63,6 +76,8 @@ fn hello_handler(request: HttpRequest, params: RouteParams) raises -> Result[Htt
     response.body = "Hello, Sweet!"
     return Ok(response)
 ```
+
+See [Getting Started Guide](docs/getting-started.md) for detailed instructions.
 
 ## Core Components
 
@@ -155,7 +170,22 @@ fn hello_handler(request: HttpRequest, params: RouteParams) raises -> Result[Htt
 
 ## Documentation
 
-- [Design Document](.kiro/specs/sweet-api-framework/design.md) - Comprehensive architecture and algorithms
+- **[Getting Started](docs/getting-started.md)** - Installation and first steps
+- **[Week 1-4 Tasks](docs/week-1-4-tasks.md)** - Detailed development plan
+- **[Implementation Roadmap](.kiro/specs/axiom-api-framework/implementation-roadmap.md)** - V1-V3 roadmap
+- **[Design Document](.kiro/specs/axiom-api-framework/design.md)** - Architecture details
+- **[Requirements](.kiro/specs/axiom-api-framework/requirements.md)** - Functional requirements
+
+## Current Status (V1.0 - Week 1)
+
+✅ Project structure created
+✅ FFI wrappers for libuv, llhttp, yyjson
+✅ Installation script
+✅ Test framework
+🚧 Minimal HTTP server (in progress)
+⏳ Router, middleware, validation (planned)
+
+**Current Performance**: Not yet benchmarked (Week 4 target: 25-30K RPS)
 
 ## License
 

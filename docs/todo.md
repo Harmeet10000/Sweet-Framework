@@ -1,9 +1,58 @@
 # TODO List
 
-1. rename it to Sweet from Axiom      DONE
-2.  add epoll as fallback(make it modular to use both tokio and seastar)- dont use complex FP patterns, use function composition.
-3.  use mojo default async runtime for the very forst version, adding tokio/seastar can come later.
-4. add future support for pattern matching when it comes to mojo
+## DECISIONS MADE (2026-05-31)
+
+✅ 1. rename it to Sweet from Axiom - DONE
+✅ 2. V1: Use libuv (epoll/kqueue fallback), V2: Add Seastar
+✅ 3. V1: Use libuv via FFI, V2: Migrate to Mojo native async + Seastar
+✅ 4. V1: Scalar implementations, V2: Add SIMD + MLIR optimizations
+✅ 5. See implementation-roadmap.md for detailed plan
+
+## ACTIVE TODO (V1.0 - Current Week)
+
+### Week 1: Environment Setup ✅ COMPLETE
+- [x] Install Mojo compiler (latest stable)
+- [x] Install C libraries (libuv, llhttp, yyjson, liburing, c-ares)
+- [x] Set up project structure
+- [x] Create FFI wrappers
+- [x] Create test files
+- [x] Documentation
+
+### Week 2: TCP & HTTP Server 🚧 IN PROGRESS
+**Current Status**: Day 1 - FFI Testing Phase
+
+#### Immediate Tasks (Today)
+- [ ] Set LD_LIBRARY_PATH for shared libraries
+- [ ] Test FFI wrappers:
+  ```bash
+  mojo run tests/test_ffi_libuv.mojo
+  mojo run tests/test_ffi_llhttp.mojo
+  mojo run tests/test_ffi_yyjson.mojo
+  ```
+- [ ] Fix any FFI issues (function signatures, types, etc.)
+- [ ] Document FFI patterns that work
+
+#### Day 2-3: Connection Handling
+- [ ] Implement TCP connection acceptance
+- [ ] Implement socket read/write
+- [ ] Handle C callbacks properly
+- [ ] Test with telnet
+
+#### Day 4-5: HTTP Integration
+- [ ] Integrate llhttp parser
+- [ ] Build HttpRequest from parsed data
+- [ ] Implement route matching
+- [ ] Call route handlers
+
+#### Day 6-7: Response & Testing
+- [ ] Send HTTP responses
+- [ ] Test with curl
+- [ ] Benchmark with wrk (target: 10K RPS)
+- [ ] Fix bugs and optimize
+
+## DEFERRED TO LATER VERSIONS
+
+4. add future support for pattern matching when it comes to mojo (V2+)
 5. middlewares and plugins should be separate(research first), also search how deugging should be done for async task(make a clean hexgonal like interface if possible)
 6. see the implementation of SeaStar/Glommio/tokio-uring in the plan and check if it works with proposed plan of Task_Queue implementation of single and multicore, RLIMIT_MEMLOCK ≥ 512 KiB (for io_uring), tokio vs Node.js event loop/uvloop
 7. check if photon(logger) and http client is in plan or not
