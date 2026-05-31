@@ -18,38 +18,6 @@
 - [x] Create test files
 - [x] Documentation
 
-### Week 2: TCP & HTTP Server 🚧 IN PROGRESS
-**Current Status**: Day 1 - FFI Testing Phase
-
-#### Immediate Tasks (Today)
-- [ ] Set LD_LIBRARY_PATH for shared libraries
-- [ ] Test FFI wrappers:
-  ```bash
-  mojo run tests/test_ffi_libuv.mojo
-  mojo run tests/test_ffi_llhttp.mojo
-  mojo run tests/test_ffi_yyjson.mojo
-  ```
-- [ ] Fix any FFI issues (function signatures, types, etc.)
-- [ ] Document FFI patterns that work
-
-#### Day 2-3: Connection Handling
-- [ ] Implement TCP connection acceptance
-- [ ] Implement socket read/write
-- [ ] Handle C callbacks properly
-- [ ] Test with telnet
-
-#### Day 4-5: HTTP Integration
-- [ ] Integrate llhttp parser
-- [ ] Build HttpRequest from parsed data
-- [ ] Implement route matching
-- [ ] Call route handlers
-
-#### Day 6-7: Response & Testing
-- [ ] Send HTTP responses
-- [ ] Test with curl
-- [ ] Benchmark with wrk (target: 10K RPS)
-- [ ] Fix bugs and optimize
-
 ## DEFERRED TO LATER VERSIONS
 
 4. add future support for pattern matching when it comes to mojo (V2+)
@@ -109,3 +77,4 @@ This is how the "chosen ones" achieve hard preemption without an OS kernel. By d
 42. add SO_REUSEPORT and others for better performace, Utilizing SO_REUSEPORT and Mojo's concurrency primitives to create a lock-free, thread-per-core listener architecture.
 43. does mojo offers 0 cost FFIs? and how good is the support for C, C++, Rust
 44. how will SO_REUSEPORT incorporate with Seastar 
+45. add a script like the ones in bunx which sets up/scaafolds a project.

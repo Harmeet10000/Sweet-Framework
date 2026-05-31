@@ -1,0 +1,1049 @@
+Transform Your Team into a High-Performing Agile - Medium
+  URL: https://medium.com/@shari.mona/transform-your-team-into-a-high-performing-agile-a-step-by-step-guide-to-addressing-anti-patterns-27eabb36a627
+  Once anti-patterns are identified, it's time to construct a strategic plan for improvement. The focus should be on root causes and on solutions ...
+
+  --- Content ---
+  [Sitemap](https://medium.com/sitemap/sitemap.xml)
+  
+  [Open in app](https://play.google.com/store/apps/details?id=com.medium.reader&referrer=utm_source%3DmobileNavBar&source=post_page---top_nav_layout_nav-----------------------------------------)
+  
+  Sign up
+  
+  [Sign in](https://medium.com/m/signin?operation=login&redirect=https%3A%2F%2Fmedium.com%2F%40shari.mona%2Ftransform-your-team-into-a-high-performing-agile-a-step-by-step-guide-to-addressing-anti-patterns-27eabb36a627&source=post_page---top_nav_layout_nav-----------------------global_nav------------------)
+  
+  [Medium Logo](https://medium.com/?source=post_page---top_nav_layout_nav-----------------------------------------)
+  
+  Get app
+  
+  [Write](https://medium.com/m/signin?operation=register&redirect=https%3A%2F%2Fmedium.com%2Fnew-story&source=---top_nav_layout_nav-----------------------new_post_topnav------------------)
+  
+  [Search](https://medium.com/search?source=post_page---top_nav_layout_nav-----------------------------------------)
+  
+  Sign up
+  
+  [Sign in](https://medium.com/m/signin?operation=login&redirect=https%3A%2F%2Fmedium.com%2F%40shari.mona%2Ftransform-your-team-into-a-high-performing-agile-a-step-by-step-guide-to-addressing-anti-patterns-27eabb36a627&source=post_page---top_nav_layout_nav-----------------------global_nav------------------)
+  
+  ![Unknown user](https://miro.medium.com/v2/resize:fill:32:32/1*dmbNkD5D-u45r44go_cf0g.png)
+  
+  # Transform Your Team into a High-Performing Agile: A Step-by-Step Guide to Addressing Anti-Patterns
+  
+  [![Mona Shari](https://miro.medium.com/v2/da:true/resize:fill:32:32/0*nYJd9K6m1e4igjTz)](https://medium.com/@shari.mona?source=post_page---byline--27eabb36a627---------------------------------------)
+  
+  [Mona Shari](https://medium.com/@shari.mona?source=post_page---byline--27eabb36a627---------------------------------------)
+  
+  Follow
+  
+  12 min read
+  
+  ·
+  
+  Jul 26, 2023
+  
+  1
+  
+  [Listen](https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2Fplans%3Fdimension%3Dpost_audio_button%26postId%3D27eabb36a627&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shari.mona%2Ftransform-your-team-into-a-high-performing-agile-a-step-by-step-guide-to-addressing-anti-patterns-27eabb36a627&source=---header_actions--27eabb36a627---------------------post_audio_button------------------)
+  
+  Share
+  
+  You’re on a mission as an **Agile coach** or **Scrum Master** to **inspire** your **team** and make **incredible** things happen. But suddenly, you find yourself when **Agile** and **Scrum** feel like **buzzwords; productivity plunges,** andthe team **puzzles** seem unsolvable. **Overwhelming**.
+  
+  Trust me; I’ve been in your exact **spot**, faced the same **challenges**, and **emerged victorious.** And now, I’m here to share my **personal experiences** and **offer** a **helping** hand to **guide** you back onto the **path to success**.
+  
+  ## The Initial Challenges: A Personal Anecdote
+  
+  My tenure as a **Scrum Master** started on a challenging note on my first day at work. My business owner-manager questioned, **_“Does your Agile have planning, a roadmap or something?!”_** A sense of urgency swept over me as I recognized the hurdles ahead.
+  
+  During those initial weeks, I encountered **communication gaps**, **conflicting user stories**, **low productivity,** and **unpredictable value deliveries, or was it value?** Our backlog was filled with **spikes** and **incomplete** **stories** **carried** **over** **from** **one sprint to another**. The lack of **empowerment** and **motivation** was evident; our **daily stand-ups** felt like a **status** **call** without a clear idea and understanding of the **stage of the work** items!Moreover, most of my team members, being **remote** and **introverted** individuals, operated in **isolated silos** with **no shared goal and vision** among **multiple vendors.** And,Oh, and let’s not forget the additional hurdle of dealing with some **turnover**. It was a **whirlwind**, to say the least.
+  
+  ## The Transformation Journey: A Path of Continuous Improvement
+  
+  As a **seasoned coach**, I understand that transforming the team requires more than just **motivational speeches** and **pep talks**. Let’s face it; the journey isn’t always smooth. Yet, through months of **hard work**, **unwavering** **commitment**, and a **willingness to embrace** **vulnerability**, we set sail toward **success.** Our approach is **rooted in progression**, **not** **perfection**, as we **continuously** **strive** to **better ourselves** and our **processes**. I have witnessed my team **overcome** **obstacles** and reach their **higher potential,** a journey that continues today. This experience affirms the power of **true leadership.** It **reinforced** my belief in **leading** with a generous dose of **empathy**, **dedication**, **resilience**, and a dash of **passion,** true to the spirit of the **Kaizen** approach.
+  
+  We made **continuous** **improvements** as our **North Star**, constantly striving to better ourselves day by day. **_Challenges were not roadblocks but invitations to adventure._** To our surprise, we started **achieving** **feats** that seemed **out of reach**. This culture of **relentless** **improvement** became the cornerstone of our success.
+  
+  In this article, I’ll walk you through a five-step approach to transforming your team into a **high-performing Agile team** with a [**Kaizen approach**](https://en.wikipedia.org/wiki/Kaizen) while also discussing the role of **vulnerability in leadership,** the importance of **emotional intelligence**, and how to create a **safe space** for your team to be open and honest. Let’s dive in and make sure to have some fun along the way; after all, we’re all human, right?
+  
+  ## **_Step 1: Understanding the current situation_**
+  
+  It’s essential to **assess your team’s current level of Agile maturity before** **starting** on any **transformational** **journey**. This is **not** just **ticking the boxes**; the step involves **identifying** the **negative patterns/ anti-patterns** preventing your team from **achieving optimal performance**. The **assessment** provides a **baseline** of the **team’s** **strengths** and **weaknesses** and helps you **identify** areas that need **improvement**.
+  
+  There are various standards and some free assessments tools available to assess your **team’s Agile maturity**, including the **Agile Maturity Model**, **Scrum Maturity Assessment**, **Team Agility Assessment**, **Agile Fluency Diagnostic**, **Innovation Maturity Model**, **LACE Competency Assessment**, **SAFe Agile Team Self-Assessment**, and **Agile Self-Assessment Game**. These assessments provide **insights** into the **team’s Agile practices**, **processes**, and **culture** and help **identify areas** for **improvement**.
+  
+  Press enter or click to view image in full size
+  
+  ![](https://miro.medium.com/v2/resize:fit:700/0*8YcnD3xgj5U7rx3U.png)
+  
+  Now, let’s roll up our sleeves and get cracking:
+  
+  - **Choose the Right Assessment Tool:** Like picking the right map for our journey, let’s select a tool that aligns perfectly with our team’s unique needs and goals.
+  - **Dive Deep into the Evaluation:** No shallow wading here; we need to dive deep into the assessment. Understanding every facet of our team’s performance is vital to unlocking our true potential.
+  - **Standardize the Process:** Let’s stay on course with a standardized tool. We don’t want to miss any hidden gems that could lead us to improvement.
+  - **Involve Everyone:** Involve all team members in the assessment process to ensure accuracy.
+  - **Seek External Help:** Don’t be shy to ask for help. An experienced Agile coach or consultant can provide the insights we might overlook.
+  - **Analyze and Reflect:** Once we’ve collected our treasure trove of insights, it’s time to sit back, analyze, and reflect on what we’ve found. These findings are our stepping stones to an Agile transformation.
+  
+  ## **_Step 2: Monitor Team Interactions and Behavior_**
+  
+  Put on your **explorer’s hat**; it’s time for a little field study. We’re going to **get close** and **personal** with the **team**, not as intrusive watchdogs, but as keen **observers**. Observing their **behavior** and **interactions** is crucial to identify **anti-patterns** hindering the team’s performance.
+  
+  ### **But what exactly are these anti-Anti-patterns in an Agile team?**
+  
+  They are recurring patterns of behavior or practices that hinder the team’s performance and effectiveness. These **anti-patterns** can manifest at **various levels**, such as **individual**, **team**, or **organizational** **levels**. By identifying and addressing these anti-patterns, teams can overcome challenges and improve their overall performance.
+  
+  Here are some specific anti-patterns commonly observed in Agile teams:
+  
+  - **Lack of Clear Goals and Vision:** When team members are unclear about the team’s goals and vision, they may lack direction and motivation. This can lead to disengagement, low productivity, and a lack of focus on delivering value to customers.
+  - **Poor Communication:** Communication is a critical aspect of Agile teamwork. When there is poor communication within the team or between team members and stakeholders, misunderstandings can occur, resulting in misaligned expectations and delays in delivering work.
+  - **Siloed Working:** Agile promotes collaboration and cross-functional teams. However, anti-patterns may emerge when team members work in isolation and fail to collaborate effectively. This can lead to duplication of efforts, a lack of knowledge sharing, and reduced overall productivity.
+  - **Ineffective Sprint Planning:** Sprint planning is essential for setting clear objectives and defining the work to be done in a sprint. When sprint planning is ineffective, teams may struggle to meet their commitments, leading to incomplete work and a lack of predictability in delivering value.
+  - **Insufficient Continuous Integration and Continuous Deployment (CI/CD):** CI/CD practices are crucial for delivering software quickly and reliably. Teams that do not prioritize CI/CD may encounter integration issues, delayed deployments, and a slower feedback loop.
+  - **Low Empowerment:** Agile teams should be empowered to make decisions and take ownership of their work. When team members lack empowerment and autonomy, they may become dependent on leaders for every decision, resulting in slow decision-making and reduced creativity.
+  - **Lack of Cross-Functional Skills:** Agile teams should ideally have a diverse set of skills that allow them to work on different aspects of a project. A lack of cross-functional skills can lead to bottlenecks, dependencies on specific individuals, and slower progress.
+  - **Absence of Retrospectives:** Retrospectives are vital for continuous improvement in Agile. Teams that do not conduct regular retrospectives miss the opportunity to reflect on their performance, identify areas for improvement, and implement changes effectively.
+  - **Resistance to Change:** Agile emphasizes adaptability and embracing change, but some teams may resist adopting Agile practices fully. This can impede progress and limit the team’s ability to respond effectively to changing requirements.
+  - **Ignoring Feedback from Customers or Users:** Failing to gather and incorporate feedback from customers or end-users can result in delivering products that do not meet their needs. Feedback is essential for iterative development and continuous improvement.
+  
+  By observing the team’s behavior, you can pinpoint these patterns and begin addressing them. Armed with the insights from your initial evaluation, immerse yourself in the subtleties of your team’s daily **interactions** and **behavior**. Here, we’ll focus on three key principles: the **Kaizen philosophy**, **emotional intelligence**, and **vulnerability**.
+  
+  1. **Embrace the Kaizen Philosophy:** This Japanese concept emphasizes **continuous improvement** and **values the human element**. It acknowledges that successful transformation within a team is deeply rooted in positive and effective human interactions. By adopting this philosophy, you encourage a **culture of constant**, **incremental** **improvement**, fostering a more **productive** and **harmonious** team environment.
+  2. **Develop** **Emotional Intelligence:** This is the ability to understand and manage your own emotions, as well as those of others. As a leader, it’s essential to be emotionally intelligent to comprehend your team members’ feelings and motivations. This understanding can lead to more effective communication, conflict resolution, and overall team cohesion.
+  3. **Show** **Vulnerability**: This involves being **open** and **authentic**, even when it means exposing oneself to potential criticism or judgment. As a leader, showing vulnerability can create a **culture of trust** and **openness**. This encourages team members to share their own ideas and concerns without fear, leading to more **honest communication** and **stronger** **team bonds**.
+  
+  Next, let’s focus on the practical steps:
+  
+  - **Be Present:** Immerse yourself in the team’s activities. Spend time with your team, and be a part of the process — meetings, stand-ups, pairing sessions. Be **keen**, **open**, and **receptive**.
+  - **Recognize Patterns:** Keep an eye out for repeated behavior — both positive and negative. Are there patterns that boost productivity or create roadblocks?
+  - **Be the Chronicler:** Document your observations. These notes will serve as a reliable base for future improvements.
+  - **Objective Observance:** remember, we’re here to understand, not to judge. Keep an open mind and a clear perspective.
+  - **Involve Everyone:** Inclusion matters! It helps cultivate a sense of ownership and makes each team member feel valued and heard.
+  
+  **Encouraging open communication** in such an environment helps create a **culture of trust and psychological safety**.This fosters an atmosphere where team members are encouraged to share their concerns, leading to a deeper understanding of the **team’s dynamics** and **challenges**. By being **observant**, **empathetic**, and **receptive** to **feedback**, we can begin the journey of transformation and continuous improvement for our Agile team.
+  
+  ## **_Step 3: Conduct One-on-One Sessions with Team Members_**
+  
+  One-on-one sessions with team members allow for a **deeper understanding** of each **individual’s** **perspectives**, **strengths**, and areas of **improvement**. They provide a **safe space** for each member to voice their **thoughts**, **feelings**, and **concerns** about the **team’s dynamics** and their **personal roles** within it. Additionally, these sessions help **identify** any **underlying** issues that may not be **immediately** **apparent** in a **group** **setting**.
+  
+  ## Get Mona Shari’s stories in your inbox
+  
+  Join Medium for free to get updates from this writer.
+  
+  Subscribe
+  
+  Subscribe
+  
+  Remember me for faster sign in
+  
+  To conduct meaningful and productive one-on-one sessions, consider the following:
+  
+  - **Set a Clear Agenda:** Before you meet, outline what you hope to discuss during the session. This might include the team member’s feelings about their role, their views on the team’s dynamics, or their **personal** **goals** and **challenges**. This agenda will keep the discussion focused and purposeful.
+  - **Listen Actively:** As a coach, your primary role during these sessions is to **listen**. Encourage team members to **express** their **thoughts** **freely**, ask **open-ended questions** to **gain deeper insights**, and make sure to **reflect** on their **comments** to show understanding.
+  - **Provide Constructive Feedback:** When providing feedback, **be specific**, **objective**, and **actionable**. Avoid being vague and focus on how team members can improve their performance. Remember to **balance** **criticism** with **recognition** of their **achievements**.
+  - **Develop an Action Plan Together:** After discussing their **strengths** and **weaknesses**, work with each team member to **formulate** a plan for improvement. This plan should outline specific steps they can take to enhance their performance or resolve issues.
+  - **Maintain Confidentiality:** Ensure that your team members know their discussions with you are **confidential**. This **trust** can lead to more **honest** and **open** conversations.
+  
+  These **personalized sessions**, though time-consuming, are **invaluable** in gathering **individual perspectives** and understanding **team dynamics** at a deeper level. They pave the way for effective **problem-solving** and **promote** a **culture of openness** and **mutual respect** within the team.
+  
+  ## **_Step 4: Assess and Analyze Team Metrics_**
+  
+  Performance metrics are an integral part of Agile practices, providing **concrete data** on **productivity**, **efficiency**, and the **overall functioning** of the team. However, while reviewing these metrics, we must ensure their effective usage to yield **accurate** **results**. This step involves diving deep into various Agile metrics and understanding how they reflect the team’s performance. Here’s how we can make this step an effective one:
+  
+  - **Select Relevant Metrics:** There are numerous Agile metrics available, such as **velocity**, **cycle time**, **burn-down charts**, **throughput matrix,** and others. Each of these metrics provides specific insights about your team’s performance. Choose the ones that are most **relevant** to your **team’s work** and **objectives**.
+  - **Establish Realistic Benchmarks:** Setting **clear,** achievable benchmarks will provide a better understanding of whether the team’s performance is **improving**, **stagnant**, or **declining**.
+  - **Review Regularly:** Consistent review of these metrics helps monitor the team’s performance over time, identify trends, and initiate timely interventions if needed.
+  - **Make Data-Driven Decisions:** Use these metrics to guide your decisions about process improvements. Remember, these metrics are indicators, not final judgments, of your team’s performance.
+  - **Avoid Metric Overemphasis:** Metrics should be **part** of a **comprehensive** approach to assess team performance. They provide **quantitative** **data** but may **not capture qualitative aspects** like team dynamics and communication.
+  - **Beware of Metric Manipulation:** Ensure that the metrics are objective and not influenced by personal biases or opinions. Using a tool that automatically generates the metrics can help keep them accurate and reliable.
+  - **Integrate with Other Assessments:** Team metrics are just one aspect of the overall assessment. Combine these with insights from team behavior observations, one-on-one sessions, and stakeholder feedback for a comprehensive understanding of your team’s performance.
+  
+  Remember, the aim is not to turn the team into a metrics-chasing unit but to use these numbers as a means to gauge, understand, and improve team performance in alignment with the Kaizen philosophy. Always ensure that the focus stays on continuous improvement and not just on the numbers.
+  
+  ## **Step 5: Develop a Strategy to Address Anti-Patterns**
+  
+  Once anti-patterns are **identified**, it’s time to construct a **strategic** **plan** for **improvement**. The focus should be on root causes and on solutions that encourage Agile and Lean best practices within the team.
+  
+  **1\. Prioritize the Anti-patterns:** based on your observations, one-on-one sessions, and review of team metrics, establish which anti-patterns are causing the most significant issues. Rank them by their overall impact and severity.
+  
+  **2\. Identify Root Causes:** Gain a deeper understanding of each anti-pattern by determining the underlying issues causing them. By knowing these root causes, you can generate effective, targeted solutions.
+  
+  **3\. Develop an Action Plan:** With knowledge of the root causes, create a comprehensive action plan. This should involve **Agile** and **Lean best practices** that address the causes and promote efficiency and collaboration within the team.
+  
+  **4\. Execute the Plan:** Embrace the philosophy of continuous improvement (Kazain) and gradually introduce the new practices while providing sufficient training and support. Encourage team members to engage in their own development and involve them in the process of addressing root causes.
+  
+  **5\. Monitor Progress:** Regularly check on the progress being made and adjust your plan as necessary. Use team metrics and other forms of feedback to track improvements and refine your plan based on the results.
+  
+  During this process, it’s important to foster an environment that embraces **emotional intelligence** and allows for **vulnerability.** **Open communication** should be encouraged, and it should be **safe for team members to voice their concerns** and share their challenges. This not only makes them feel **valued** and **understood**, but it also **cultivates** a **supportive** and **trusting** environment, which is essential for transformation.
+  
+  > _Keep in mind to:_
+  >
+  > _Introduce changes gradually to avoid overwhelming team members._
+  >
+  > _Engage team members in the process to encourage a sense of ownership and buy-in._
+  >
+  > _Clearly communicate changes and explain their rationale for better understanding and acceptance._
+  >
+  > _Lastly, make a point to celebrate small victories and encourage continuous learning and improvement._
+  
+  **_The journey toward becoming a high-performing Agile team is a marathon, not a sprint._**
+  
+  **To counter anti-patterns effectively, consider the following practices:**
+  
+  - **Value the Customer:** Ensure that the team’s work is aligned with delivering customer value. Help team members understand how their work contributes to the overall goals of the organization and the end user.
+  - **Establish Clear Priorities:** Create a clear and transparent roadmap that aligns with the organization’s goals and priorities. Make sure that the team understands the priorities and has a clear understanding of what they should be working on.
+  - **Promote Collaboration and Communication:** Encourage collaboration and communication among team members, stakeholders, and other departments. Foster a culture of openness and transparency where everyone feels comfortable sharing their ideas and feedback.
+  - **Uphold Continuously Improve:** Encourage continuous learning and improvement. Make sure that team members have the necessary resources and support to improve their skills and knowledge. Celebrate the team’s successes and achievements to build morale and motivation.
+  
+  So, sprinkle a dash of Kaizen, embrace vulnerability like a superhero, and lead with empathy in your heart. Understand the challenges your team members face and be there to support them. Trust me; it makes all the difference.
+  
+  Now, it’s reflection time: If you’ve identified anti-patterns within your team’s performance, what steps have you taken to address them? I’d love to hear your experiences and feedback in the comments below!
+  
+  _Moving forward: do you now have a high-performance team? Now what? Read my latest article on Step 6, “_ [**_Sustaining High-Performance Teams and Nurturing Excellence for the Long Run.”_**](https://medium.com/@shari.mona/b1b506d7819c)
+  
+  [![Mona Shari](https://miro.medium.com/v2/resize:fill:48:48/0*nYJd9K6m1e4igjTz)](https://medium.com/@shari.mona?source=post_page---post_author_info--27eabb36a627---------------------------------------)
+  
+  [![Mona Shari](https://miro.medium.com/v2/resize:fill:64:64/0*nYJd9K6m1e4igjTz)](https://medium.com/@shari.mona?source=post_page---post_author_info--27eabb36a627---------------------------------------)
+  
+  Follow
+  
+  [**Written by Mona Shari**](https://medium.com/@shari.mona?source=post_page---post_author_info--27eabb36a627---------------------------------------)
+  
+  [3 followers](https://medium.com/@shari.mona/followers?source=post_page---post_author_info--27eabb36a627---------------------------------------)
+  
+  · [2 following](https://medium.com/@shari.mona/following?source=post_page---post_author_info--27eabb36a627---------------------------------------)
+  
+  Ikigai \|\| Life Long Learner \|\| Digital Agile Transformation Coach \|\| Visual Thinker \|\| Sense Maker \|\| Kaizen \|\| Innovation Strategy \|\| Artificial Intelligence
+  
+  Follow
+  
+  [Help](https://help.medium.com/hc/en-us?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Status](https://status.medium.com/?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [About](https://medium.com/about?autoplay=1&source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Careers](https://medium.com/jobs-at-medium/work-at-medium-959d1a85284e?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Press](mailto:pressinquiries@medium.com)
+  
+  [Blog](https://blog.medium.com/?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Privacy](https://policy.medium.com/medium-privacy-policy-f03bf92035c9?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Rules](https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Terms](https://policy.medium.com/medium-terms-of-service-9db0094a1e0f?source=post_page-----27eabb36a627---------------------------------------)
+  
+  [Text to speech](https://speechify.com/medium?source=post_page-----27eabb36a627---------------------------------------)
+  
+  reCAPTCHA
+  
+  Recaptcha requires verification.
+  
+  protected by **reCAPTCHA**
+  --- End Content ---
+
+Performance testing and antipatterns - Azure Architecture Center
+  URL: https://learn.microsoft.com/en-us/azure/architecture/antipatterns/
+  For each antipattern, we describe why the antipattern typically occurs, symptoms of the antipattern, and techniques for resolving the problem.
+
+  --- Content ---
+  Table of contents Exit editor mode
+  
+  Ask LearnAsk Learn
+  
+  Reading modeTable of contents[Read in English](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/)Add to CollectionsAdd to plan[Edit](https://github.com/microsoftdocs/architecture-center/blob/main/docs/antipatterns/index.md)
+  
+  * * *
+  
+  Copy MarkdownPrint
+  
+  * * *
+  
+  Note
+  
+  Access to this page requires authorization. You can try [signing in](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/#) or changing directories.
+  
+  
+  Access to this page requires authorization. You can try changing directories.
+  
+  
+  # Performance testing and antipatterns for cloud applications
+  
+  Feedback
+  
+  Summarize this article for me
+  
+  
+  _Performance antipatterns_, much like design patterns, are common defective processes and implementations within organizations. These are common practices that are likely to cause scalability problems when an application is under pressure. Awareness of these practices can help simplify communication of high-level concepts among software practitioners, and knowledge of antipatterns can be helpful when reviewing code or diagnosing performance issues.
+  
+  Here's a common scenario: An application behaves well during performance testing. It's released to production, and begins to handle real workloads. At that point, it starts to run poorly. It rejects user requests, stalls, or throws exceptions. The development team is then faced with two questions:
+  
+  - Why didn't this behavior show up during testing?
+  - How do we fix it?
+  
+  The answer to the first question is straightforward. It's difficult to simulate real users in a test environment, along with their behavior patterns and the volumes of work that they might handle. The only completely sure way to understand how a system behaves under load is to observe it in production. To be clear, we aren't suggesting that you should skip performance testing. Performance testing is crucial for getting baseline performance metrics. But you must be prepared to observe and correct performance issues when they arise in the live system.
+  
+  The answer to the second question, how to fix the problem, is less straightforward. Any number of factors might contribute, and sometimes the problem only manifests under certain circumstances. Instrumentation and logging are key to finding the root cause, but you also have to know what to look for.
+  
+  Based on our engagements with Microsoft Azure customers, we've identified some of the most common performance issues that customers see in production. For each antipattern, we describe why the antipattern typically occurs, symptoms of the antipattern, and techniques for resolving the problem. We also provide sample code that illustrates both the antipattern and a suggested scalability solution.
+  
+  Some of these antipatterns might seem obvious when you read the descriptions, but they occur more often than you might think. Sometimes an application inherits a design that worked on-premises, but doesn't scale in the cloud. Or an application might start with a very clean design, but as new features are added, one or more of these antipatterns creeps in. Regardless, this guide will help you to identify and fix these antipatterns.
+  
+  [Section titled: Catalog of antipatterns](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/#catalog-of-antipatterns)
+  
+  ## Catalog of antipatterns
+  
+  Here's the list of the antipatterns that we've identified:
+  
+  Expand table
+  
+  | Antipattern | Description |
+  | --- | --- |
+  | [Busy Database](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/busy-database/) | Offloading too much processing to a data store. |
+  | [Busy Front End](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/busy-front-end/) | Moving resource-intensive tasks onto background threads. |
+  | [Chatty I/O](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/chatty-io/) | Continually sending many small network requests. |
+  | [Extraneous Fetching](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/extraneous-fetching/) | Retrieving more data than is needed, resulting in unnecessary I/O. |
+  | [Improper Instantiation](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/) | Repeatedly creating and destroying objects that are designed to be shared and reused. |
+  | [Monolithic Persistence](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/monolithic-persistence/) | Using the same data store for data with very different usage patterns. |
+  | [No Caching](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/no-caching/) | Failing to cache data. |
+  | [Noisy Neighbor](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor) | A single tenant uses a disproportionate amount of the resources. |
+  | [Retry Storm](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/retry-storm/) | Retrying failed requests to a server too often. |
+  | [Synchronous I/O](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/synchronous-io/) | Blocking the calling thread while I/O completes. |
+  
+  [Section titled: Next steps](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/#next-steps)
+  
+  ## Next steps
+  
+  For more about performance tuning, see [Performance efficiency in the Well Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/)
+  
+  * * *
+  
+  ## Feedback
+  
+  Was this page helpful?
+  
+  
+  YesNoNo
+  
+  Need help with this topic?
+  
+  
+  Want to try using Ask Learn to clarify or guide you through this topic?
+  
+  
+  Ask LearnAsk Learn
+  
+  Suggest a fix?
+  
+  * * *
+  
+  ## Additional resources
+  
+  Training
+  
+  
+  Module
+  
+  
+  [Microsoft Azure Well-Architected Framework - Performance Efficiency - Training](https://learn.microsoft.com/en-us/training/modules/azure-well-architected-performance-efficiency/?source=recommendations)
+  
+  Learn how to optimize your workload to meet performance requirements while balancing costs, reliability, and security.
+  
+  
+  Certification
+  
+  
+  [Microsoft Certified: Azure Cosmos DB Developer Specialty - Certifications](https://learn.microsoft.com/en-us/credentials/certifications/azure-cosmos-db-developer-specialty/?source=recommendations)
+  
+  Write efficient queries, create indexing policies, manage, and provision resources in the SQL API and SDK with Microsoft Azure Cosmos DB.
+  
+  
+  * * *
+  
+  - Last updated on 02/03/2026
+  
+  Ask Learn is an AI assistant that can answer questions, clarify concepts, and define terms using trusted Microsoft documentation.
+  
+  Please sign in to use Ask Learn.
+  
+  [Sign in](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/#)
+  --- End Content ---
+
+Code Anti-Patterns and Best Practices Guide - DEV Community
+  URL: https://dev.to/mdiffshashank/code-anti-patterns-and-best-practices-guide-50cg
+  1. Switch / If-Else Ladders · 2. Magic Numbers and Strings · 3. Code Duplication · 4. Redundant State · 5. Long Parameter Lists · 6. Inline Styles ...
+
+  --- Content ---
+  # Code Anti-Patterns and Best Practices Guide (Conceptual Edition)
+  
+  > This document intentionally uses **masked / pseudo-code**.
+  >
+  > The goal is to explain **design ideas**, not provide copy-paste implementations.
+  
+  * * *
+  
+  ## 1\. Switch / If-Else Ladders
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  function handle(type) {
+    if (type === 'A') return ResultA;
+    else if (type === 'B') return ResultB;
+    else if (type === 'C') return ResultC;
+    // keeps growing...
+    else return DefaultResult;
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  **Problems**
+  
+  - Hard to extend
+  - Violates Open/Closed Principle
+  - Increasing cognitive load
+  
+  ### ✅ Better Pattern: Lookup Strategy
+  
+  ```
+  const TYPE_MAP = {
+    A: ResultA,
+    B: ResultB,
+    C: ResultC,
+  };
+  
+  function handle(type) {
+    return TYPE_MAP[type] ?? DefaultResult;
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 2\. Magic Numbers and Strings
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  if (value > 52428800) {
+    throw Error('Too large');
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  const LIMITS = {
+    MAX_SIZE: /* 50 MB */,
+  };
+  
+  if (value > LIMITS.MAX_SIZE) {
+    throw Error('Too large');
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 3\. Code Duplication
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  function actionFromScreenA() {
+    /* same logic */
+  }
+  
+  function actionFromScreenB() {
+    /* same logic again */
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  function sharedAction(input, callbacks) {
+    /* common logic */
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 4\. Redundant State
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  state = {
+    data,
+    filteredData,
+    count,
+    hasData,
+  };
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  state = {
+    data,
+    filter,
+  };
+  
+  // filteredData, count derived when needed
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 5\. Long Parameter Lists
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  createReport(a, b, c, d, e, f, g);
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  createReport({
+    title,
+    range,
+    format,
+    metadata,
+  });
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 6\. Inline Styles Everywhere
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  <div style={{ /* many inline values */ }} />
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  <div className="card" />
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 7\. Scattered Filter Logic
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  // repeated in many places
+  data.filter(/* custom logic */);
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  applyFilters(data, filters);
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 8\. `any` Type Abuse
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  function process(data: any): any {}
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  function process(data: KnownType): ResultType {}
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 9\. Prop Drilling
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  <ComponentA prop={x}>
+    <ComponentB prop={x}>
+      <ComponentC prop={x} />
+    </ComponentB>
+  </ComponentA>
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  // shared context / store
+  useSharedValue();
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 10\. God Components
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  // 1000-line component
+  // state + API + logic + UI mixed
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  // small components
+  // hooks for logic
+  // composition at top level
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 11\. Premature Optimization
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  // caching, memoization, virtualization everywhere
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  // simple code first
+  // optimize after measuring
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## 12\. Poor Error Handling
+  
+  ### ❌ Anti-Pattern
+  
+  ```
+  catch (e) {
+    console.log(e);
+  }
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  ### ✅ Better Pattern
+  
+  ```
+  showErrorToUser();
+  logErrorWithContext();
+  allowRetry();
+  ```
+  
+  Enter fullscreen modeExit fullscreen mode
+  
+  * * *
+  
+  ## Summary Checklist
+  
+  - Prefer clarity over cleverness
+  - Centralize logic
+  - Derive state instead of storing it
+  - Optimize only after measuring
+  - Write code for humans first
+  
+  * * *
+  
+  _Last updated: February 2026_
+  
+  [![profile](https://media2.dev.to/dynamic/image/width=64,height=64,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Forganization%2Fprofile_image%2F140%2F9639a040-3c27-4b99-b65a-85e100016d3c.png)\\
+  MongoDB](https://dev.to/mongodb) Promoted
+  
+  Dropdown menu
+  
+  - [What's a billboard?](https://dev.to/billboards)
+  - [Manage preferences](https://dev.to/settings/customization#sponsors)
+  
+  * * *
+  
+  - [Report billboard](https://dev.to/report-abuse?billboard=239017)
+  
+  [![Gen AI apps are built with MongoDB Atlas](https://media2.dev.to/dynamic/image/width=775%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fi.imgur.com%2FlGiI0TQ.png)](https://www.mongodb.com/cloud/atlas/lp/try3?utm_campaign=display_devto-beginners_pl_flighted_atlas_tryatlaslp_prosp_gic-null_ww-all_dev_dv-all_eng_leadgen&utm_source=devto&utm_medium=display&utm_content=airevolution-v1&bb=239017)
+  
+  ## [Gen AI apps are built with MongoDB Atlas](https://www.mongodb.com/cloud/atlas/lp/try3?utm_campaign=display_devto-beginners_pl_flighted_atlas_tryatlaslp_prosp_gic-null_ww-all_dev_dv-all_eng_leadgen&utm_source=devto&utm_medium=display&utm_content=airevolution-v1&bb=239017)
+  
+  MongoDB Atlas is the developer-friendly database for building, scaling, and running gen AI & LLM apps—no separate vector DB needed. Enjoy native vector search, 115+ regions, and flexible document modeling. Build AI faster, all in one place.
+  
+  [Start Free](https://www.mongodb.com/cloud/atlas/lp/try3?utm_campaign=display_devto-beginners_pl_flighted_atlas_tryatlaslp_prosp_gic-null_ww-all_dev_dv-all_eng_leadgen&utm_source=devto&utm_medium=display&utm_content=airevolution-v1&bb=239017)
+  
+  Read More
+  
+  
+  ![pic](https://media2.dev.to/dynamic/image/width=256,height=,fit=scale-down,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8j7kvp660rqzt99zui8e.png)
+  
+  [Create template](https://dev.to/settings/response-templates)
+  
+  Templates let you quickly answer FAQs or store snippets for re-use.
+  
+  SubmitPreview [Dismiss](https://dev.to/404.html)
+  
+  Are you sure you want to hide this comment? It will become hidden in your post, but will still be visible via the comment's [permalink](https://dev.to/mdiffshashank/code-anti-patterns-and-best-practices-guide-50cg#).
+  
+  
+  Hide child comments as well
+  
+  Confirm
+  
+  
+  For further actions, you may consider blocking this person and/or [reporting abuse](https://dev.to/report-abuse)
+  
+  [![profile](https://media2.dev.to/dynamic/image/width=64,height=64,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Forganization%2Fprofile_image%2F1726%2F2a73f1e6-7995-4348-ae37-44b064274c59.png)\\
+  AWS](https://dev.to/aws) Promoted
+  
+  Dropdown menu
+  
+  - [What's a billboard?](https://dev.to/billboards)
+  - [Manage preferences](https://dev.to/settings/customization#sponsors)
+  
+  * * *
+  
+  - [Report billboard](https://dev.to/report-abuse?billboard=263054)
+  
+  [![Building industry breakthroughs together](https://media2.dev.to/dynamic/image/width=775%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fucarecdn.com%2Fc8cef280-5539-46c8-b4a5-257e839455e0%2F)](https://aws-experience.com/amer/smb/events/series/IndustriesLive-AWSandAWSIndustriesPartnersShow?bb=263054)
+  
+  ## [Building industry breakthroughs together](https://aws-experience.com/amer/smb/events/series/IndustriesLive-AWSandAWSIndustriesPartnersShow?bb=263054)
+  
+  Discover how the cloud helps businesses adapt, innovate, and grow in real time. Tune in live.
+  
+  [Register Now](https://aws-experience.com/amer/smb/events/series/IndustriesLive-AWSandAWSIndustriesPartnersShow?bb=263054)
+  
+  DEV Education Tracks
+  
+  Dropdown menu
+  
+  - [What's a billboard?](https://dev.to/billboards)
+  - [Manage preferences](https://dev.to/settings/customization#sponsors)
+  
+  * * *
+  
+  - [Report billboard](https://dev.to/report-abuse?billboard=238629)
+  
+  x
+  
+  ### Announcing the First DEV Education Track: "Build Apps with Google AI Studio"
+  
+  The moment is here! We recently announced DEV Education Tracks, our new initiative to bring you structured learning paths directly from industry experts.
+  
+  
+  [Dive in and Learn](https://dev.to/devteam/announcing-the-first-dev-education-track-build-apps-with-google-ai-studio-ej7?bb=238629)
+  
+  DEV is bringing Education Tracks to the community. Dismiss if you're not interested. ❤️
+  
+  
+  ![DEV Community](https://media2.dev.to/dynamic/image/width=190,height=,fit=scale-down,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8j7kvp660rqzt99zui8e.png)
+  
+  We're a place where coders share, stay up-to-date and grow their careers.
+  
+  
+  [Log in](https://dev.to/enter?signup_subforem=1) [Create account](https://dev.to/enter?signup_subforem=1&state=new-user)
+  
+  ![](https://assets.dev.to/assets/sparkle-heart-5f9bee3767e18deb1bb725290cb151c25234768a0e9a2bd39370c382d02920cf.svg)![](https://assets.dev.to/assets/multi-unicorn-b44d6f8c23cdd00964192bedc38af3e82463978aa611b4365bd33a0f1f4f3e97.svg)![](https://assets.dev.to/assets/exploding-head-daceb38d627e6ae9b730f36a1e390fca556a4289d5a41abb2c35068ad3e2c4b5.svg)![](https://assets.dev.to/assets/raised-hands-74b2099fd66a39f2d7eed9305ee0f4553df0eb7b4f11b01b6b1b499973048fe5.svg)![](https://assets.dev.to/assets/fire-f60e7a582391810302117f987b22a8ef04a2fe0df7e3258a5f49332df1cec71e.svg)
+  --- End Content ---
+
+What are some anti-patterns even senior developers sometimes use?
+  URL: https://www.reddit.com/r/react/comments/1iq6c6k/what_are_some_antipatterns_even_senior_developers/
+  The real answer is one should use a useEffect effect only to interact with a system outside of the render cycle.
+
+5 Code Review Anti-Patterns You Can Eliminate with AI
+  URL: https://coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai
+  Transform your code reviews with AI that catches anti-patterns and ships better code. Learn how CodeRabbit helps eliminate tech debt.
+
+  --- Content ---
+  # 5 Code Review Anti-Patterns You Can Eliminate with AI
+  
+  by
+  
+  ![Desmond Obisi](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2F135804478e43988756ca1751f2d80baeb08557a2fe5a3a1d147a81ca662dd4e7_459ce17afe.png&w=128&q=75)
+  
+  ![Aravind Putrevu](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2F4f1207c969e369a098ca45727bf3854edf974cdd06cb4d080a17eca8fafafee0_035cb20f02.png&w=128&q=75)
+  
+  Desmond Obisi
+  
+  Aravind Putrevu
+  
+  November 08, 2024
+  
+  11 min read
+  
+  November 08, 2024
+  
+  11 min read
+  
+  - [The Most Common Anti-Patterns in Software Development](https://www.coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai#heading-the-most-common-anti-patterns-in-software-development)
+  - [How to Eliminate Anti-Patterns in Code Reviews With Coderabbit](https://www.coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai#heading-how-to-eliminate-anti-patterns-in-code-reviews-with-coderabbit)
+  - [What’s Next?](https://www.coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai#heading-whats-next)
+  - [Conclusion](https://www.coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai#heading-conclusion)
+  
+  [Back to blog](https://www.coderabbit.ai/blog)
+  
+  ![Cover image](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2F5_Code_Review_Anti_Patterns_You_Can_Eliminate_with_AI_e93ac589ca.png&w=3840&q=75)
+  
+  Have you ever let a bug slip through because the pull request was too big to review properly? That's a typical anti-pattern. Trying to review a massive chunk of code in one go often leads to mistakes slipping through the cracks. Breaking it into smaller, manageable parts would save you the headache later.
+  
+  [Code reviews](https://coderabbit.ai/blog/code-reviews-made-easy-how-to-improve-code-quality) should keep your code clean, understandable, and easy to maintain. But sometimes, **bad habits like anti-patterns** often creep in. These common practices seem helpful but slow you down, hurt code quality, make your code harder to maintain, introduce bugs, and frustrate your team.
+  
+  In this guide, you’ll learn about the most common anti-patterns that pop up during code reviews and how to easily tackle them with artificial intelligence (AI).
+  
+  ## The Most Common Anti-Patterns in Software Development
+  
+  Anti-patterns generally exist in any programming language, and in contrast to best practices, they are highly counterproductive, steal valuable time, and lead to errors. These are some of the most common anti-patterns you’ll often encounter in software engineering during code reviews:
+  
+  **God Class (Or God Object)**
+  
+  A "God Class” happens when you create a class that takes on too many responsibilities. You end up relying on one class to handle multiple tasks that should be broken down into smaller, more focused classes. The result is a bloated, hard-to-maintain class where making changes in one place leads to unintended consequences elsewhere. This structure often introduces bugs, code duplication, and technical debt.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/d054fe1085724d776b06ebd88d3666221072542409f03cf2ad8943ab473f8f8c_2e9977cffd.png)
+  
+  **Spaghetti Code**
+  
+  Spaghetti code happens when your code’s structure becomes so twisted and tangled that it’s nearly impossible to follow. This kind of code is difficult to review and maintain, whether due to excessive branching, deeply nested loops, or relying too much on global variables. It leads to longer review cycles, makes debugging harder, and can introduce new bugs through hidden dependencies.
+  
+  Here’s a sample of spaghetti code from a Go codebase that shows how things can spiral out of control.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/fbe01063019f28c20e642945bbcd551f5f0fd58f09dd90fde303e27688495987_bec828a198.png)
+  
+  **Nit-Picking and Style Feedback**
+  
+  Another common anti-pattern you might run into is spending too much time on minor style issues during code reviews, such as formatting or naming conventions. While consistency matters, spending too much time on trivial style concerns can distract you from the core review and waste everyone’s time. Your reviews should prioritize functionality, architecture, and logic, leaving formatting to automated tools or final touch-ups.
+  
+  Here is a good example in a JavaScript codebase of how this anti-pattern can occur in your software development process:
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/66f4445fcbbbb6795d5a21a2a344ba1f299e402eb1694f5a90f60eaf4a6abba1_61ffc0e87e.png)
+  
+  **Primitive Obsession**
+  
+  Primitive obsession happens when you use simple data types like strings, integers, or booleans to represent more complex concepts. This makes the code harder to read, understand, and extend. You lose the rich meaning behind these values, making it challenging for others to work with your code later.
+  
+  Not only does this make future changes harder due to a lack of type safety and validation, but you also add to your technical debt. You’ll likely have to revisit that code to refactor it down the line.
+  
+  Here’s an example of how this anti-pattern can show up in a Rust codebase.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/bef0d71fdc5b7506b3c30361f283861e11b12d24b1cb243b1fd09b5556f3c9a6_f35715eb2b.png)
+  
+  **Shotgun Surgery**
+  
+  Shotgun surgery is an anti-pattern where a single change to your codebase requires modifications to many different parts of the codebase. This often indicates that the responsibilities are not well-distributed across the system, leading to tightly coupled code that's difficult to maintain and extend.
+  
+  Shotgun surgery complicates maintenance by requiring changes in multiple places, increasing the risk of bugs, reducing code reusability and modularity, and making updates more time-consuming with a higher chance of inconsistencies. The code snippets below show how shotgun surgery anti-pattern is formed in a Go codebase:
+  
+  In this example, to add a tracking functionality to this email-sending service, you will have to update the **Email** structure.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/a1eca498a76d84f8a280d5d10162fb2d94d356ac6b143b77c4bb373ea1ca8373_323a01e179.png)
+  
+  You will also need to update the logic itself:
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/d022a4eaed0e5202b8a1dd515b58f702871721a643f4001f7dd9ab3ac47c7e37_5301ad9656.png)
+  
+  Next, you will have to update the tasks handler:
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/dabf1b325b84f57620a4856d75be222640d91644e3e134c193d4881358370057_bf3cfcf91a.png)
+  
+  Finally, in the demo function, you will use the email service. This roundtrip that affects multiple files while making a little change is what gives rise to the shotgun surgery anti-pattern.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/29746023e6c789b0ac57f7ea3385a168f118e6a3d420277f8262c964939ca21b_83ed56764d.png)
+  
+  The following section shows how an AI tool like [CodeRabbit](https://coderabbit.ai/) can help you identify and resolve these anti-patterns in code reviews.
+  
+  ## How to Eliminate Anti-Patterns in Code Reviews With Coderabbit
+  
+  [CodeRabbit](https://docs.coderabbit.ai/) automates repetitive tasks, identifies potential issues, and offers smart suggestions, allowing you to focus on writing maintainable code. With integrations available for popular CI/CD tools and version control systems, CodeRabbit can easily fit into your existing workflows.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/c6540a3b3bd596cf602b1728dd74d59fe83791961aee54d27d880469054dda93_0ecd23dff1.png)
+  
+  The diagram above illustrates how CodeRabbit streamlines the code review process by addressing anti-patterns to ensure clean code is produced for deployment. The process starts when a developer creates a new feature, fixes a bug, and submits a pull request that may contain inefficiencies or anti-patterns. During the code review phase, CodeRabbit detects and resolves these patterns, automating tasks that would otherwise slow down the review process.
+  
+  Now, let’s set up CodeRabbit and use it to eliminate these anti-patterns discussed above.
+  
+  **Setting up CodeRabbit**
+  
+  1. Navigate to the [CodeRabbit Website](https://coderabbit.ai/) and get started by signing up for a free account as shown below:
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/bea5fa0b18f55456ae263d40270ec98f47a767a6361451d23a668e9c8dcc2f9f_c0ca727056.png)
+  
+  
+  1. After a successful signup, you'll be directed to the dashboard to add the repositories you want CodeRabbit to integrate into. Click the **Add Repositories** as shown below to add your repositories:
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/b70e1079ca757c0a877a335c9d05e2049c8fb47cb2521eeda47580e64090a5a6_b0c7be2532.png)
+  
+  
+  1. Next, you will customize how CodeRabbit integrates and works with your repositories. Navigate to the **Organization Settings** menu to complete this setup as shown below:
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/9d71bbfeea316e98e04e54f6ff1640d14de528311c77be61fe74ce35ec4f2457_3e3742b989.png)
+  
+  To see CodeRabbit in action, create pull requests in any repositories you added. It will begin to provide well-tailored code reviews and suggestions for a better software development experience. CodeRabbit is also useful for plugging existing tools into your code review pipeline, like linting tools, CI/CD tools, etc.
+  
+  **Resolving God Class or Object with CodeRabbit**
+  
+  CodeRabbit will identify complex, overstuffed classes and suggest ways to break them down, as seen in this screenshot. By analyzing class complexity, it recommends splitting God Classes into smaller, more focused components that follow the single responsibility principle.
+  
+  It’ll also alert you to excessive lines of code, methods, and [cyclomatic complexity,](https://en.wikipedia.org/wiki/Cyclomatic_complexity) guiding you toward delegating functionality to more manageable classes.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/00352b3528e4e2686f5c9d6b79d64dcb5e06109979bca3401b05e86714a327d8_f80f7a8ae6.png)
+  
+  **Resolving Spaghetti Code with CodeRabbit**
+  
+  By analyzing logic flow and flagging overly complex sections, CodeRabbit helps you clean up spaghetti code. It offers refactoring suggestions to improve the structure of your code.
+  
+  You’ll get recommendations for breaking down large functions, replacing nested conditionals with polymorphism, and abstracting repetitive logic into reusable components.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/297ee30d335a55d23626bc4a1c0809f6950f776b3423155948a99d3eafff59fa_ad121287a3.png)
+  
+  **Resolving Nit-Picking and Style Feedback**
+  
+  The screenshot shows how CodeRabbit will automatically handle your style and formatting checks, ensuring your code stays consistent. This frees you to focus on the important parts like code logic and functionality. It'll also flag style issues so that you can concentrate on performance and architecture.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/7f3e2e5abbed8fea094f7083c683216b7e1e2dc8d46a8a325a27af85917a8344_8247cb2c08.png)
+  
+  **Resolving Primitive Obsession**
+  
+  CodeRabbit will help you detect primitive obsession in your codebase and suggests replacing primitive types with domain-specific structures, leading to more expressive and robust code. It identifies your overuse of primitives, provides refactoring suggestions, and recommends type safety improvements, like using enums for status codes or custom types for domain concepts such as email addresses or currency values.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/eb3f4726fa583786ca82db5da6c5e990f24e63a691e7f4952757082c5d91c37c_70fd8e1bfd.png)
+  
+  **Resolving Shotgun Surgery Anti-patterns**
+  
+  CodeRabbit helps you by suggesting fixes for coupling issues. It analyzes dependencies, suggests refactoring strategies to centralize functionality, recommends design patterns to decouple systems, offers code organization tips, and provides automated refactoring options to implement improvements.
+  
+  ![](https://victorious-bubble-f69a016683.media.strapiapp.com/037091fa4c950f09542062a17e424f14adbce7fcdc8caa9683fd5146d22c313f_d5c2285209.png)
+  
+  ## What’s Next?
+  
+  Aside from the anti-patterns we've discussed above, other issues can impact your code quality and the efficiency of your review process. These include:
+  
+  - **Lava Flow:** Old, unused code that builds up over time, increasing technical debt and cluttering your codebase.
+  
+  - **Cargo Cult Programming:** Applying patterns or tools without understanding why leads to unnecessary complexity.
+  
+  - **Yo-Yo Problem:** Complex inheritance structures that force developers to jump between multiple classes to understand the logic.
+  
+  - **Magic Numbers:** Hardcoding values directly into the code instead of using constants makes your code harder to read and maintain.
+  
+  
+  [CodeRabbit](https://coderabbit.ai/) is built to identify and resolve these problems with AI-powered automation and intelligent refactoring suggestions. Streamlining your code reviews and eliminating these mistakes will reduce technical debt, keep your code cleaner, and improve overall maintainability and scalability.
+  
+  ## Conclusion
+  
+  Anti-patterns in code reviews can slow down your development, create unnecessary hurdles, and compromise the quality of your code.
+  
+  Identifying these anti-patterns through human code review has proven not so effective, but with the advent of artificial intelligence (AI) in code review tools today, they can be thoroughly spotted and eliminated. This will make your software architecture more solid.
+  
+  With CodeRabbit, you have a solution that helps you overcome these issues. From automating style checks to providing actionable feedback, CodeRabbit reshapes the review process, freeing you up to focus on delivering clean, maintainable code.
+  
+  [Sign up to CodeRabbit](https://coderabbit.ai/) for a free trial to improve your code reviews by integrating AI into your workflow.
+  
+  Share
+  
+  [![https://victorious-bubble-f69a016683.media.strapiapp.com/Reddit_feecae8a6d.png](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2FReddit_feecae8a6d.png&w=64&q=75)](https://www.reddit.com/submit?url=https://coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai&text=5%20Code%20Review%20Anti-Patterns%20You%20Can%20Eliminate%20with%20AI&utm_source=blog&utm_medium=web&utm_campaign=social_share_blog)[![https://victorious-bubble-f69a016683.media.strapiapp.com/X_721afca608.png](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2FX_721afca608.png&w=64&q=75)](https://x.com/intent/tweet?url=https://www.coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai&text=5%20Code%20Review%20Anti-Patterns%20You%20Can%20Eliminate%20with%20AI&utm_source=blog&utm_medium=web&utm_campaign=social_share_blog)[![https://victorious-bubble-f69a016683.media.strapiapp.com/Linked_In_a3d8c65f20.png](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2FLinked_In_a3d8c65f20.png&w=64&q=75)](http://www.linkedin.com/shareArticle?url=https://coderabbit.ai/blog/5-code-review-anti-patterns-you-can-eliminate-with-ai&text=5%20Code%20Review%20Anti-Patterns%20You%20Can%20Eliminate%20with%20AI&utm_source=blog&utm_medium=web&utm_campaign=social_share_blog)
+  
+  Cut code review time & bugs by 50%
+  
+  Most installed AI app on GitHub and GitLab
+  
+  Free 14-day trial
+  
+  [Get Started](https://coderabbit.link/01oeOX7)
+  
+  ## Catch the latest, right in your inbox.
+  
+  Subscribe
+  
+  [Add us your feed.![RSS feed icon](https://www.coderabbit.ai/_next/image?url=%2Fimages%2Fblog%2Ffeed.png&w=96&q=75&dpl=dpl_DzCPRWew8ha9AzydkTv7KmGfuN9y)](https://www.coderabbit.ai/feed)
+  
+  ![newsletter decoration](https://www.coderabbit.ai/_next/image?url=%2Fimages%2Fblog%2Fnewsletter.png&w=3840&q=75&dpl=dpl_DzCPRWew8ha9AzydkTv7KmGfuN9y)
+  
+  ## Catch the latest, right in your inbox.
+  
+  Subscribe
+  
+  [Add us your feed.![RSS feed icon](https://www.coderabbit.ai/_next/image?url=%2Fimages%2Fblog%2Ffeed.png&w=96&q=75&dpl=dpl_DzCPRWew8ha9AzydkTv7KmGfuN9y)](https://www.coderabbit.ai/feed)
+  
+  ## Keep reading
+  
+  [![Opus 4.8 benchmark results for AI code review and code generation](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2FClaude_Opus48_88cc3a750f.png&w=3840&q=75)\\
+  \\
+  **Opus 4.8 benchmark results for AI code review and code generation** \\
+  \\
+  Opus 4.8 is the best model we have used for long-horizon agentic coding and code generation, and it holds its own on code review out of the box.](https://www.coderabbit.ai/blog/opus-4-8-release)
+  
+  [![Do you trust your AI Agent?](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2FExplainability_09a9aeaedd.png&w=3840&q=75)\\
+  \\
+  **Do you trust your AI Agent?** \\
+  \\
+  Autonomous AI agents are everywhere. But without explainability, that autonomy never gets used on anything that matters. Here's the framework to fix that.](https://www.coderabbit.ai/blog/do-you-trust-your-ai-agent)
+  
+  [![What's new in CodeRabbit Review: Code Peek, Chat Agent and more](https://www.coderabbit.ai/_next/image?url=https%3A%2F%2Fvictorious-bubble-f69a016683.media.strapiapp.com%2FWhats_new_in_CR_Review_3_d8aa1af5c3.png&w=3840&q=75)\\
+  \\
+  **What's new in CodeRabbit Review: Code Peek, Chat Agent and more** \\
+  \\
+  In the two weeks since CodeRabbit Review was released, a handful of features have been added to the mix. Here's a look at what's new.](https://www.coderabbit.ai/blog/code-search-peek-in-coderabbit-review)
+  
+  Get
+  
+  Started in
+  
+  2 clicks.
+  
+  No credit card needed
+  
+  Your browser does not support the video.
+  
+  0:00
+  
+  [Install in VS Code](https://app.coderabbit.ai/login?free-trial)
+  
+  Your browser does not support the video.
+  
+  0:00
+  --- End Content ---

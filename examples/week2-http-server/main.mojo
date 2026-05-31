@@ -1,13 +1,9 @@
 # Week 2 - Simple HTTP Server Example
 # This is a minimal example to test our HTTP server implementation
 
-from sweet.server.http import HttpServer, create_simple_server
-from sweet.http.request import HttpRequest
-from sweet.http.response import HttpResponse
-from sweet.core.result import Result, Ok
-from sweet.core.error import Error
+from sweet.server.http import create_simple_server
 
-fn main() raises:
+def main() raises:
     print("=== Week 2: HTTP Server Example ===\n")
     
     # Create HTTP server

@@ -2,27 +2,27 @@
 
 from sweet.ffi.libuv import LibUV, UVLoop, UVTcp
 
-fn test_libuv_load() raises:
+def test_libuv_load() raises:
     """Test that libuv library loads successfully."""
     print("Testing libuv library loading...")
-    let lib = LibUV()
+    var lib = LibUV()
     print("✓ libuv loaded successfully")
 
-fn test_event_loop_creation() raises:
+def test_event_loop_creation() raises:
     """Test event loop creation and cleanup."""
     print("Testing event loop creation...")
-    let loop = UVLoop()
+    var loop = UVLoop()
     print("✓ Event loop created successfully")
     # Loop will be cleaned up automatically by RAII
 
-fn test_tcp_creation() raises:
+def test_tcp_creation() raises:
     """Test TCP handle creation."""
     print("Testing TCP handle creation...")
-    let loop = UVLoop()
-    let tcp = UVTcp(loop)
+    var loop = UVLoop()
+    var tcp = UVTcp(loop)
     print("✓ TCP handle created successfully")
 
-fn main() raises:
+def main() raises:
     print("=== libuv FFI Tests ===\n")
     
     test_libuv_load()

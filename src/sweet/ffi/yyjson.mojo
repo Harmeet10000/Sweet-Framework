@@ -3,17 +3,18 @@
 #
 # yyjson documentation: https://github.com/ibireme/yyjson
 
-from sys.ffi import DLHandle, external_call
-from memory import UnsafePointer
+from sweet.core.error import Error
+from std.ffi import OwnedDLHandle, external_call
+from std.memory import UnsafePointer
 
 # ============================================================================
 # yyjson Types
 # ============================================================================
 
-alias yyjson_doc = UnsafePointer[NoneType]
-alias yyjson_val = UnsafePointer[NoneType]
-alias yyjson_mut_doc = UnsafePointer[NoneType]
-alias yyjson_mut_val = UnsafePointer[NoneType]
+alias yyjson_doc = UnsafePointer[NoneType, MutExternalOrigin]
+alias yyjson_val = UnsafePointer[NoneType, MutExternalOrigin]
+alias yyjson_mut_doc = UnsafePointer[NoneType, MutExternalOrigin]
+alias yyjson_mut_val = UnsafePointer[NoneType, MutExternalOrigin]
 
 # Read flags
 alias YYJSON_READ_NOFLAG = 0
@@ -37,105 +38,139 @@ alias YYJSON_WRITE_ALLOW_INF_AND_NAN = 1 << 3
 struct YYJson:
     """Safe wrapper around yyjson library."""
     
-    var handle: DLHandle
+    var handle: OwnedDLHandle
+    var yyjson_read_fn: def(UnsafePointer[UInt8, _], Int, Int) abi("C") -> yyjson_doc
+    var yyjson_doc_get_root_fn: def(yyjson_doc) abi("C") -> yyjson_val
+    var yyjson_doc_free_fn: def(yyjson_doc) abi("C") -> None
+    var yyjson_is_null_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_is_bool_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_is_num_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_is_str_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_is_arr_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_is_obj_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_get_bool_fn: def(yyjson_val) abi("C") -> Bool
+    var yyjson_get_int_fn: def(yyjson_val) abi("C") -> Int64
+    var yyjson_get_real_fn: def(yyjson_val) abi("C") -> Float64
+    var yyjson_get_str_fn: def(yyjson_val) abi("C") -> UnsafePointer[UInt8, MutExternalOrigin]
+    var yyjson_get_len_fn: def(yyjson_val) abi("C") -> Int
+    var yyjson_obj_get_fn: def(yyjson_val, UnsafePointer[UInt8, _]) abi("C") -> yyjson_val
+    var yyjson_write_fn: def(yyjson_val, Int, UnsafePointer[Int, MutExternalOrigin]) abi("C") -> UnsafePointer[UInt8, MutExternalOrigin]
+    var yyjson_free_fn: def(UnsafePointer[UInt8, MutExternalOrigin]) abi("C") -> None
     
-    fn __init__(inout self) raises:
+    def __init__(out self) raises:
         """Load yyjson shared library."""
         try:
-            self.handle = DLHandle("vendor/yyjson/build/libyyjson.so")
+            self.handle = OwnedDLHandle("vendor/yyjson/build/libyyjson.so")
         except:
             try:
-                self.handle = DLHandle("vendor/yyjson/build/libyyjson.dylib")
+                self.handle = OwnedDLHandle("vendor/yyjson/build/libyyjson.dylib")
             except:
                 raise Error("Failed to load yyjson library")
+        self.yyjson_read_fn = self.handle.get_function[def(UnsafePointer[UInt8, _], Int, Int) abi("C") -> yyjson_doc]("yyjson_read")
+        self.yyjson_doc_get_root_fn = self.handle.get_function[def(yyjson_doc) abi("C") -> yyjson_val]("yyjson_doc_get_root")
+        self.yyjson_doc_free_fn = self.handle.get_function[def(yyjson_doc) abi("C") -> None]("yyjson_doc_free")
+        self.yyjson_is_null_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_is_null")
+        self.yyjson_is_bool_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_is_bool")
+        self.yyjson_is_num_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_is_num")
+        self.yyjson_is_str_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_is_str")
+        self.yyjson_is_arr_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_is_arr")
+        self.yyjson_is_obj_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_is_obj")
+        self.yyjson_get_bool_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Bool]("yyjson_get_bool")
+        self.yyjson_get_int_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Int64]("yyjson_get_int")
+        self.yyjson_get_real_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Float64]("yyjson_get_real")
+        self.yyjson_get_str_fn = self.handle.get_function[def(yyjson_val) abi("C") -> UnsafePointer[UInt8, MutExternalOrigin]]("yyjson_get_str")
+        self.yyjson_get_len_fn = self.handle.get_function[def(yyjson_val) abi("C") -> Int]("yyjson_get_len")
+        self.yyjson_obj_get_fn = self.handle.get_function[def(yyjson_val, UnsafePointer[UInt8, _]) abi("C") -> yyjson_val]("yyjson_obj_get")
+        self.yyjson_write_fn = self.handle.get_function[def(yyjson_val, Int, UnsafePointer[Int, MutExternalOrigin]) abi("C") -> UnsafePointer[UInt8, MutExternalOrigin]]("yyjson_write")
+        self.yyjson_free_fn = self.handle.get_function[def(UnsafePointer[UInt8, MutExternalOrigin]) abi("C") -> None]("yyjson_free")
     
     # ========================================================================
     # Read Functions
     # ========================================================================
     
-    fn read(self, dat: UnsafePointer[UInt8], len: Int, flg: Int) -> yyjson_doc:
+    def read(self, dat: UnsafePointer[UInt8, _], len: Int, flg: Int) -> yyjson_doc:
         """Read JSON from string."""
-        return external_call["yyjson_read", yyjson_doc](dat, len, flg)
+        return self.yyjson_read_fn(dat, len, flg)
     
-    fn doc_get_root(self, doc: yyjson_doc) -> yyjson_val:
+    def doc_get_root(self, doc: yyjson_doc) -> yyjson_val:
         """Get root value from document."""
-        return external_call["yyjson_doc_get_root", yyjson_val](doc)
+        return self.yyjson_doc_get_root_fn(doc)
     
-    fn doc_free(self, doc: yyjson_doc) -> None:
+    def doc_free(self, doc: yyjson_doc) -> None:
         """Free JSON document."""
-        external_call["yyjson_doc_free", None](doc)
+        self.yyjson_doc_free_fn(doc)
     
     # ========================================================================
     # Value Type Checking
     # ========================================================================
     
-    fn is_null(self, val: yyjson_val) -> Bool:
+    def is_null(self, val: yyjson_val) -> Bool:
         """Check if value is null."""
-        return external_call["yyjson_is_null", Bool](val)
+        return self.yyjson_is_null_fn(val)
     
-    fn is_bool(self, val: yyjson_val) -> Bool:
+    def is_bool(self, val: yyjson_val) -> Bool:
         """Check if value is boolean."""
-        return external_call["yyjson_is_bool", Bool](val)
+        return self.yyjson_is_bool_fn(val)
     
-    fn is_num(self, val: yyjson_val) -> Bool:
+    def is_num(self, val: yyjson_val) -> Bool:
         """Check if value is number."""
-        return external_call["yyjson_is_num", Bool](val)
+        return self.yyjson_is_num_fn(val)
     
-    fn is_str(self, val: yyjson_val) -> Bool:
+    def is_str(self, val: yyjson_val) -> Bool:
         """Check if value is string."""
-        return external_call["yyjson_is_str", Bool](val)
+        return self.yyjson_is_str_fn(val)
     
-    fn is_arr(self, val: yyjson_val) -> Bool:
+    def is_arr(self, val: yyjson_val) -> Bool:
         """Check if value is array."""
-        return external_call["yyjson_is_arr", Bool](val)
+        return self.yyjson_is_arr_fn(val)
     
-    fn is_obj(self, val: yyjson_val) -> Bool:
+    def is_obj(self, val: yyjson_val) -> Bool:
         """Check if value is object."""
-        return external_call["yyjson_is_obj", Bool](val)
+        return self.yyjson_is_obj_fn(val)
     
     # ========================================================================
     # Value Getters
     # ========================================================================
     
-    fn get_bool(self, val: yyjson_val) -> Bool:
+    def get_bool(self, val: yyjson_val) -> Bool:
         """Get boolean value."""
-        return external_call["yyjson_get_bool", Bool](val)
+        return self.yyjson_get_bool_fn(val)
     
-    fn get_int(self, val: yyjson_val) -> Int64:
+    def get_int(self, val: yyjson_val) -> Int64:
         """Get integer value."""
-        return external_call["yyjson_get_int", Int64](val)
+        return self.yyjson_get_int_fn(val)
     
-    fn get_real(self, val: yyjson_val) -> Float64:
+    def get_real(self, val: yyjson_val) -> Float64:
         """Get float value."""
-        return external_call["yyjson_get_real", Float64](val)
+        return self.yyjson_get_real_fn(val)
     
-    fn get_str(self, val: yyjson_val) -> UnsafePointer[UInt8]:
+    def get_str(self, val: yyjson_val) -> UnsafePointer[UInt8, MutExternalOrigin]:
         """Get string value."""
-        return external_call["yyjson_get_str", UnsafePointer[UInt8]](val)
+        return self.yyjson_get_str_fn(val)
     
-    fn get_len(self, val: yyjson_val) -> Int:
+    def get_len(self, val: yyjson_val) -> Int:
         """Get string/array/object length."""
-        return external_call["yyjson_get_len", Int](val)
+        return self.yyjson_get_len_fn(val)
     
     # ========================================================================
     # Object Functions
     # ========================================================================
     
-    fn obj_get(self, obj: yyjson_val, key: UnsafePointer[UInt8]) -> yyjson_val:
+    def obj_get(self, obj: yyjson_val, key: UnsafePointer[UInt8, _]) -> yyjson_val:
         """Get value from object by key."""
-        return external_call["yyjson_obj_get", yyjson_val](obj, key)
+        return self.yyjson_obj_get_fn(obj, key)
     
     # ========================================================================
     # Write Functions
     # ========================================================================
     
-    fn write(self, val: yyjson_val, flg: Int, len: UnsafePointer[Int]) -> UnsafePointer[UInt8]:
+    def write(self, val: yyjson_val, flg: Int, len: UnsafePointer[Int, MutExternalOrigin]) -> UnsafePointer[UInt8, MutExternalOrigin]:
         """Write JSON to string."""
-        return external_call["yyjson_write", UnsafePointer[UInt8]](val, flg, len)
+        return self.yyjson_write_fn(val, flg, len)
     
-    fn free(self, str: UnsafePointer[UInt8]) -> None:
+    def free(self, str: UnsafePointer[UInt8, MutExternalOrigin]) -> None:
         """Free JSON string."""
-        external_call["yyjson_free", None](str)
+        self.yyjson_free_fn(str)
 
 
 # ============================================================================
@@ -149,25 +184,25 @@ struct JsonDocument:
     var lib: YYJson
     var valid: Bool
     
-    fn __init__(inout self, json_str: String, flags: Int = YYJSON_READ_NOFLAG) raises:
+    def __init__(out self, json_str: String, flags: Int = YYJSON_READ_NOFLAG) raises:
         """Parse JSON string."""
         self.lib = YYJson()
-        let data = json_str.unsafe_ptr()
-        let length = len(json_str)
+        var data = json_str.unsafe_ptr()
+        var length = len(json_str)
         
         self.doc = self.lib.read(data, length, flags)
         
-        if self.doc == UnsafePointer[NoneType]():
+        if self.doc == yyjson_doc():
             self.valid = False
             raise Error("Failed to parse JSON")
         
         self.valid = True
     
-    fn get_root(self) -> yyjson_val:
+    def get_root(self) -> yyjson_val:
         """Get root value."""
         return self.lib.doc_get_root(self.doc)
     
-    fn __del__(owned self):
+    def __del__(deinit self):
         """Clean up document."""
         if self.valid:
             self.lib.doc_free(self.doc)

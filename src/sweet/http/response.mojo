@@ -13,7 +13,7 @@ struct HttpResponse:
     var headers: Dict[String, String]
     var body: String
     
-    fn __init__(inout self, status: Int = 200):
+    def __init__(out self, status: Int = 200):
         """Create HTTP response with status code."""
         self.status = status
         self.headers = Dict[String, String]()
@@ -23,21 +23,21 @@ struct HttpResponse:
         self.headers["Content-Type"] = "text/plain"
         self.headers["Server"] = "Sweet/0.1.0"
     
-    fn set_header(inout self, name: String, value: String):
+    def set_header(mut self, name: String, value: String):
         """Set response header."""
         self.headers[name] = value
     
-    fn set_json(inout self, json: String):
+    def set_json(mut self, json: String):
         """Set JSON body and content type."""
         self.body = json
         self.headers["Content-Type"] = "application/json"
     
-    fn set_html(inout self, html: String):
+    def set_html(mut self, html: String):
         """Set HTML body and content type."""
         self.body = html
         self.headers["Content-Type"] = "text/html"
     
-    fn to_bytes(self) -> String:
+    def to_bytes(self) -> String:
         """
         Convert response to HTTP/1.1 format.
         
@@ -62,7 +62,7 @@ struct HttpResponse:
         
         return result
     
-    fn status_text(self) -> String:
+    def status_text(self) -> String:
         """Get status text for status code."""
         if self.status == 200:
             return "OK"
@@ -80,21 +80,21 @@ struct HttpResponse:
             return "Unknown"
     
     @staticmethod
-    fn error(status: Int, message: String) -> HttpResponse:
+    def error(status: Int, message: String) -> HttpResponse:
         """Create error response."""
         var response = HttpResponse(status)
         response.body = message
         return response
     
     @staticmethod
-    fn ok(body: String) -> HttpResponse:
+    def ok(body: String) -> HttpResponse:
         """Create 200 OK response."""
         var response = HttpResponse(200)
         response.body = body
         return response
     
     @staticmethod
-    fn json(data: String) -> HttpResponse:
+    def json(data: String) -> HttpResponse:
         """Create JSON response."""
         var response = HttpResponse(200)
         response.set_json(data)

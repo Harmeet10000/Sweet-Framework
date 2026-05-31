@@ -2,15 +2,15 @@
 # Combines TCP server with HTTP parser
 
 from sweet.server.tcp import TcpServer
-from sweet.ffi.llhttp import HttpParser, HTTP_REQUEST
+from sweet.ffi.llhttp import HttpParser, HTTP_REQUEST, HTTP_GET, HTTP_POST
 from sweet.http.request import HttpRequest
 from sweet.http.response import HttpResponse
-from sweet.core.result import Result, Ok, Err
-from sweet.core.error import Error, ErrorKind
+from sweet.core.result import Result, Ok
+from sweet.core.error import Error
 from memory import UnsafePointer
 
 # Route handler type
-alias RouteHandler = fn(HttpRequest) raises -> Result[HttpResponse, Error]
+alias RouteHandler = def(HttpRequest) raises -> Result[HttpResponse, Error]
 
 struct HttpServer:
     """
@@ -26,13 +26,13 @@ struct HttpServer:
     var parser: HttpParser
     var routes: Dict[String, RouteHandler]
     
-    fn __init__(inout self, host: String, port: Int) raises:
+    def __init__(out self, host: String, port: Int) raises:
         """Create HTTP server bound to host:port."""
         self.tcp_server = TcpServer(host, port)
         self.parser = HttpParser(HTTP_REQUEST)
         self.routes = Dict[String, RouteHandler]()
-    
-    fn route(inout self, path: String, handler: RouteHandler) raises:
+
+    def route(mut self, path: String, handler: RouteHandler) raises:
         """
         Register a route handler.
         
@@ -41,8 +41,8 @@ struct HttpServer:
             handler: Function to handle requests to this path
         """
         self.routes[path] = handler
-    
-    fn handle_request(inout self, data: UnsafePointer[UInt8], length: Int) raises -> HttpResponse:
+
+    def handle_request(mut self, data: UnsafePointer[UInt8], length: Int) raises -> HttpResponse:
         """
         Parse HTTP request and route to handler.
         
@@ -53,57 +53,51 @@ struct HttpServer:
         Returns:
             HTTP response to send back
         """
-        # Parse HTTP request
-        let parse_result = self.parser.parse(data, length)
-        
-        # Extract method and path
-        let method = self.parser.get_method()
-        let (major, minor) = self.parser.get_version()
-        
-        # TODO: Extract path from parsed request
-        # For now, use a placeholder
-        let path = "/"
-        
-        # Find matching route
-        if path in self.routes:
-            let handler = self.routes[path]
-            
-            # Create request object
-            # TODO: Properly construct HttpRequest from parsed data
-            let request = HttpRequest()
-            
-            # Call handler
-            let result = handler(request)
-            
+        _ = self.parser.parse(data, length)
+
+        var method_code = self.parser.get_method()
+        var version_major = self.parser.get_version_major()
+        var version_minor = self.parser.get_version_minor()
+
+        var method = "UNKNOWN"
+        if method_code == HTTP_GET:
+            method = "GET"
+        elif method_code == HTTP_POST:
+            method = "POST"
+
+        # Keep the path explicit until llhttp path extraction is added in a later slice.
+        var request = HttpRequest(method, "/")
+        request.version = (version_major, version_minor)
+
+        if request.path in self.routes:
+            var result = self.routes[request.path](request)
             if result.is_ok():
                 return result.unwrap()
-            else:
-                # Handler returned error
-                let error = result.unwrap_err()
-                return HttpResponse.error(500, "Internal Server Error")
-        else:
-            # No matching route
-            return HttpResponse.error(404, "Not Found")
-    
-    fn run(self) raises:
+
+            var route_error = result.unwrap_err()
+            return HttpResponse.error(500, route_error.describe())
+
+        return HttpResponse.error(404, "Not Found")
+
+    def run(mut self) raises:
         """Start the HTTP server (blocking)."""
         print("🌐 HTTP Server starting...")
-        
-        # Set up connection handler
-        fn connection_handler(conn: UnsafePointer[NoneType]):
-            print("HTTP connection received")
-            # TODO: Read HTTP request and call handle_request
-        
+
+        def connection_handler(data: UnsafePointer[UInt8], length: Int) raises -> String:
+            self.parser.reset()
+            var response = self.handle_request(data, length)
+            return response.to_bytes()
+
         self.tcp_server.listen(connection_handler)
         self.tcp_server.run()
-    
-    fn stop(self):
+
+    def stop(self):
         """Stop the HTTP server."""
         self.tcp_server.stop()
 
 
 # Helper function to create a simple HTTP server
-fn create_simple_server(host: String, port: Int) raises -> HttpServer:
+def create_simple_server(host: String, port: Int) raises -> HttpServer:
     """
     Create a simple HTTP server with a hello world handler.
     
@@ -113,7 +107,7 @@ fn create_simple_server(host: String, port: Int) raises -> HttpServer:
     """
     var server = HttpServer(host, port)
     
-    fn hello_handler(request: HttpRequest) raises -> Result[HttpResponse, Error]:
+    def hello_handler(request: HttpRequest) raises -> Result[HttpResponse, Error]:
         var response = HttpResponse(200)
         response.body = "Hello from Sweet!"
         return Ok(response)

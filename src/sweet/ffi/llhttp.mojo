@@ -3,15 +3,16 @@
 #
 # llhttp documentation: https://github.com/nodejs/llhttp
 
-from sys.ffi import DLHandle, external_call
-from memory import UnsafePointer
+from sweet.core.error import Error
+from std.ffi import OwnedDLHandle, external_call
+from std.memory import UnsafePointer, alloc
 
 # ============================================================================
 # llhttp Types
 # ============================================================================
 
-alias llhttp_t = UnsafePointer[NoneType]
-alias llhttp_settings_t = UnsafePointer[NoneType]
+alias llhttp_t = UnsafePointer[NoneType, MutExternalOrigin]
+alias llhttp_settings_t = UnsafePointer[NoneType, MutExternalOrigin]
 
 # HTTP Methods
 alias HTTP_GET = 1
@@ -32,57 +33,77 @@ alias HTTP_BOTH = 2
 struct LLHttp:
     """Safe wrapper around llhttp library."""
     
-    var handle: DLHandle
+    var handle: OwnedDLHandle
+    var llhttp_init_fn: def(llhttp_t, Int, llhttp_settings_t) abi("C") -> None
+    var llhttp_execute_fn: def(llhttp_t, UnsafePointer[UInt8, _], Int) abi("C") -> Int
+    var llhttp_get_errno_fn: def(llhttp_t) abi("C") -> Int
+    var llhttp_get_error_reason_fn: def(llhttp_t) abi("C") -> UnsafePointer[UInt8, MutExternalOrigin]
+    var llhttp_get_method_fn: def(llhttp_t) abi("C") -> Int
+    var llhttp_get_status_code_fn: def(llhttp_t) abi("C") -> Int
+    var llhttp_get_http_major_fn: def(llhttp_t) abi("C") -> Int
+    var llhttp_get_http_minor_fn: def(llhttp_t) abi("C") -> Int
+    var llhttp_reset_fn: def(llhttp_t) abi("C") -> None
+    var llhttp_settings_init_fn: def(llhttp_settings_t) abi("C") -> None
     
-    fn __init__(inout self) raises:
+    def __init__(out self) raises:
         """Load llhttp shared library."""
         try:
-            self.handle = DLHandle("vendor/llhttp/build/libllhttp.so")
+            self.handle = OwnedDLHandle("vendor/llhttp/build/libllhttp.so")
         except:
             try:
-                self.handle = DLHandle("vendor/llhttp/build/libllhttp.dylib")
+                self.handle = OwnedDLHandle("vendor/llhttp/build/libllhttp.dylib")
             except:
                 raise Error("Failed to load llhttp library")
+        self.llhttp_init_fn = self.handle.get_function[def(llhttp_t, Int, llhttp_settings_t) abi("C") -> None]("llhttp_init")
+        self.llhttp_execute_fn = self.handle.get_function[def(llhttp_t, UnsafePointer[UInt8, _], Int) abi("C") -> Int]("llhttp_execute")
+        self.llhttp_get_errno_fn = self.handle.get_function[def(llhttp_t) abi("C") -> Int]("llhttp_get_errno")
+        self.llhttp_get_error_reason_fn = self.handle.get_function[def(llhttp_t) abi("C") -> UnsafePointer[UInt8, MutExternalOrigin]]("llhttp_get_error_reason")
+        self.llhttp_get_method_fn = self.handle.get_function[def(llhttp_t) abi("C") -> Int]("llhttp_get_method")
+        self.llhttp_get_status_code_fn = self.handle.get_function[def(llhttp_t) abi("C") -> Int]("llhttp_get_status_code")
+        self.llhttp_get_http_major_fn = self.handle.get_function[def(llhttp_t) abi("C") -> Int]("llhttp_get_http_major")
+        self.llhttp_get_http_minor_fn = self.handle.get_function[def(llhttp_t) abi("C") -> Int]("llhttp_get_http_minor")
+        self.llhttp_reset_fn = self.handle.get_function[def(llhttp_t) abi("C") -> None]("llhttp_reset")
+        self.llhttp_settings_init_fn = self.handle.get_function[def(llhttp_settings_t) abi("C") -> None]("llhttp_settings_init")
     
-    fn init(self, parser: llhttp_t, type: Int, settings: llhttp_settings_t) -> None:
+    def init(self, parser: llhttp_t, type: Int, settings: llhttp_settings_t) -> None:
         """Initialize HTTP parser."""
-        external_call["llhttp_init", None](parser, type, settings)
+        self.llhttp_init_fn(parser, type, settings)
     
-    fn execute(self, parser: llhttp_t, data: UnsafePointer[UInt8], len: Int) -> Int:
+    def execute(self, parser: llhttp_t, data: UnsafePointer[UInt8, _], len: Int) -> Int:
         """Execute HTTP parser on data."""
-        return external_call["llhttp_execute", Int](parser, data, len)
+        return self.llhttp_execute_fn(parser, data, len)
     
-    fn get_errno(self, parser: llhttp_t) -> Int:
+    def get_errno(self, parser: llhttp_t) -> Int:
         """Get parser error code."""
-        return external_call["llhttp_get_errno", Int](parser)
+        return self.llhttp_get_errno_fn(parser)
     
-    fn get_error_reason(self, parser: llhttp_t) -> UnsafePointer[UInt8]:
+    def get_error_reason(self, parser: llhttp_t) -> UnsafePointer[UInt8, MutExternalOrigin]:
         """Get parser error reason."""
-        return external_call["llhttp_get_error_reason", UnsafePointer[UInt8]](parser)
+        return self.llhttp_get_error_reason_fn(parser)
     
-    fn get_method(self, parser: llhttp_t) -> Int:
+    def get_method(self, parser: llhttp_t) -> Int:
         """Get HTTP method."""
-        return external_call["llhttp_get_method", Int](parser)
+        return self.llhttp_get_method_fn(parser)
     
-    fn get_status_code(self, parser: llhttp_t) -> Int:
+    def get_status_code(self, parser: llhttp_t) -> Int:
         """Get HTTP status code."""
-        return external_call["llhttp_get_status_code", Int](parser)
+        return self.llhttp_get_status_code_fn(parser)
     
-    fn get_http_major(self, parser: llhttp_t) -> Int:
+    def get_http_major(self, parser: llhttp_t) -> Int:
         """Get HTTP major version."""
-        return external_call["llhttp_get_http_major", Int](parser)
+        return self.llhttp_get_http_major_fn(parser)
     
-    fn get_http_minor(self, parser: llhttp_t) -> Int:
+    def get_http_minor(self, parser: llhttp_t) -> Int:
         """Get HTTP minor version."""
-        return external_call["llhttp_get_http_minor", Int](parser)
+        return self.llhttp_get_http_minor_fn(parser)
     
-    fn reset(self, parser: llhttp_t) -> None:
+    def reset(self, parser: llhttp_t) -> None:
         """Reset parser."""
-        external_call["llhttp_reset", None](parser)
+        self.llhttp_reset_fn(parser)
     
-    fn settings_init(self, settings: llhttp_settings_t) -> None:
+    def settings_init(self, settings: llhttp_settings_t) -> None:
         """Initialize parser settings."""
-        external_call["llhttp_settings_init", None](settings)
+        self.llhttp_settings_init_fn(settings)
 
 
 # ============================================================================
@@ -97,44 +118,47 @@ struct HttpParser:
     var lib: LLHttp
     var initialized: Bool
     
-    fn __init__(inout self, type: Int = HTTP_REQUEST) raises:
+    def __init__(out self, type: Int = HTTP_REQUEST) raises:
         """Create and initialize HTTP parser."""
         self.lib = LLHttp()
-        self.parser = UnsafePointer[NoneType].alloc(1)
-        self.settings = UnsafePointer[NoneType].alloc(1)
+        self.parser = alloc[NoneType](1)
+        self.settings = alloc[NoneType](1)
         
         self.lib.settings_init(self.settings)
         self.lib.init(self.parser, type, self.settings)
         self.initialized = True
     
-    fn parse(self, data: UnsafePointer[UInt8], length: Int) raises -> Int:
+    def parse(self, data: UnsafePointer[UInt8, _], length: Int) raises -> Int:
         """Parse HTTP data."""
-        let result = self.lib.execute(self.parser, data, length)
+        var result = self.lib.execute(self.parser, data, length)
         
         if result != length:
-            let errno = self.lib.get_errno(self.parser)
+            var errno = self.lib.get_errno(self.parser)
             if errno != 0:
-                let reason_ptr = self.lib.get_error_reason(self.parser)
+                var reason_ptr = self.lib.get_error_reason(self.parser)
                 # Convert C string to Mojo String
+                _ = reason_ptr
                 raise Error("HTTP parse error")
         
         return result
     
-    fn get_method(self) -> Int:
+    def get_method(self) -> Int:
         """Get parsed HTTP method."""
         return self.lib.get_method(self.parser)
     
-    fn get_version(self) -> (Int, Int):
-        """Get parsed HTTP version."""
-        let major = self.lib.get_http_major(self.parser)
-        let minor = self.lib.get_http_minor(self.parser)
-        return (major, minor)
+    def get_version_major(self) -> Int:
+        """Get parsed HTTP major version."""
+        return self.lib.get_http_major(self.parser)
+
+    def get_version_minor(self) -> Int:
+        """Get parsed HTTP minor version."""
+        return self.lib.get_http_minor(self.parser)
     
-    fn reset(self):
+    def reset(self):
         """Reset parser for reuse."""
         self.lib.reset(self.parser)
     
-    fn __del__(owned self):
+    def __del__(deinit self):
         """Clean up parser."""
         if self.initialized:
             self.parser.free()

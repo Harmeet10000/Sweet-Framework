@@ -1,11 +1,11 @@
 # TCP Server Implementation
 # Uses libuv for async I/O
 
-from sweet.ffi.libuv import LibUV, UVLoop, UVTcp, uv_stream_t, uv_connection_cb
+from sweet.ffi.libuv import UVLoop, UVTcp, uv_buf_t, uv_stream_t, uv_handle_t, uv_write_t
 from memory import UnsafePointer
 
 # Connection handler callback type
-alias ConnectionHandler = fn(UnsafePointer[NoneType]) -> None
+alias ConnectionHandler = def(UnsafePointer[UInt8], Int) raises -> String
 
 struct TcpServer:
     """
@@ -21,20 +21,26 @@ struct TcpServer:
     var tcp: UVTcp
     var host: String
     var port: Int
-    var handler: Optional[ConnectionHandler]
+    var handler: ConnectionHandler
+    var active_client: Optional[UVTcp]
     
-    fn __init__(inout self, host: String, port: Int) raises:
+    def __init__(out self, host: String, port: Int) raises:
         """Create TCP server bound to host:port."""
         self.host = host
         self.port = port
         self.loop = UVLoop()
         self.tcp = UVTcp(self.loop)
-        self.handler = None
+
+        def default_handler(data: UnsafePointer[UInt8], length: Int) raises -> String:
+            return "Sweet TCP server received data\n"
+
+        self.handler = default_handler
+        self.active_client = None
         
         # Bind to address
         self.tcp.bind(host, port)
     
-    fn listen(inout self, handler: ConnectionHandler, backlog: Int = 128) raises:
+    def listen(mut self, handler: ConnectionHandler, backlog: Int = 128) raises:
         """
         Start listening for connections.
         
@@ -43,33 +49,72 @@ struct TcpServer:
             backlog: Maximum pending connections
         """
         self.handler = handler
-        
-        # Create callback wrapper
-        # Note: This is a simplified version. In practice, we need to
-        # properly handle the callback context and pass it to libuv
-        fn connection_callback(server: UnsafePointer[NoneType], status: Int):
+
+        def alloc_callback(handle: uv_handle_t, suggested_size: Int, buf: uv_buf_t):
+            _ = handle
+            buf[].base = UnsafePointer[UInt8].alloc(suggested_size)
+            buf[].len = suggested_size
+
+        def write_callback(req: uv_write_t, status: Int):
+            if status < 0:
+                print("Write error:", status)
+            if self.active_client is not None:
+                self.active_client.value().finish_write()
+                self.active_client = None
+            req.free()
+
+        def read_callback(stream: uv_stream_t, nread: Int, buf: uv_buf_t):
+            _ = stream
+            if nread <= 0:
+                if buf != None:
+                    buf[].base.free()
+                    buf.free()
+                self.active_client = None
+                return
+
+            try:
+                var response = self.handler(buf[].base, nread)
+                if self.active_client is not None:
+                    self.active_client.value().read_stop()
+                    self.active_client.value().write_string(response, write_callback)
+            except:
+                print("Read handler error")
+
+            buf[].base.free()
+            buf.free()
+
+        def connection_callback(server: uv_stream_t, status: Int):
+            _ = server
             if status < 0:
                 print("Connection error:", status)
                 return
-            
-            # Accept the connection
-            # TODO: Implement proper connection acceptance
-            print("New connection!")
+
+            if self.active_client is not None:
+                print("Connection rejected: Week 2 server supports one active client at a time")
+                return
+
+            try:
+                var client = UVTcp(self.loop)
+                client.accept_from(self.tcp)
+                self.active_client = client
+                self.active_client.value().read_start(alloc_callback, read_callback)
+            except:
+                print("Accept error")
         
         self.tcp.listen(backlog, connection_callback)
     
-    fn run(self) raises:
+    def run(self) raises:
         """Run the event loop (blocking)."""
         print("🚀 TCP Server listening on", self.host + ":" + String(self.port))
         _ = self.loop.run()
-    
-    fn stop(self):
+
+    def stop(self):
         """Stop the event loop."""
         self.loop.stop()
 
 
 # Helper function to create a simple echo server
-fn create_echo_server(host: String, port: Int) raises -> TcpServer:
+def create_echo_server(host: String, port: Int) raises -> TcpServer:
     """
     Create a simple echo server for testing.
     
@@ -78,10 +123,11 @@ fn create_echo_server(host: String, port: Int) raises -> TcpServer:
         server.run()
     """
     var server = TcpServer(host, port)
-    
-    fn echo_handler(conn: UnsafePointer[NoneType]):
-        print("Echo handler called")
-        # TODO: Read data and echo it back
+
+    def echo_handler(data: UnsafePointer[UInt8], length: Int) raises -> String:
+        _ = data
+        _ = length
+        return "Sweet TCP server received data\n"
     
     server.listen(echo_handler)
     return server

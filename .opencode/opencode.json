@@ -1,0 +1,50 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    ".opencode/AGENTS.md",
+    ".opencode/instructions/morph-tools.md"
+  ],
+  "skills": {
+    "paths": [
+      ".opencode/skills",
+      "~/.config/opencode/skills"
+    ]
+  },
+  "plugin": [
+    ".opencode/plugins/graphify.js",
+    "@warp-dot-dev/opencode-warp",
+    "@mohak34/opencode-notifier@latest",
+    "@zenobius/opencode-skillful",
+    "opencode-scheduler",
+    "opencode-firecrawl",
+    "opencode-conductor-plugin",
+    "github:JRedeker/opencode-morph-fast-apply"
+  ],
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "./scripts/*": "allow",
+      "mojo *": "allow",
+      "pkg-config *": "allow",
+      "valgrind *": "allow",
+      "wrk *": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "graphify *": "allow",
+      "rm -rf *": "ask",
+      "git reset --hard *": "deny"
+    },
+    "edit": "allow",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "task": "allow",
+    "todowrite": "allow",
+    "question": "allow",
+    "skill": "allow",
+    "webfetch": "allow",
+    "websearch": "allow"
+  }
+}
